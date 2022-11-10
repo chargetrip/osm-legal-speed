@@ -1,0 +1,23 @@
+/target/
+/tmp/
+node_modules
+.classpath
+.project
+.settings/
+
+# IDE - IntelliJ IDEA
+.idea
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+data/
+/chargetrip-distance.*
+*.pbf
+planet-*
+pom.xml.versionsBackup
+package-lock.json
