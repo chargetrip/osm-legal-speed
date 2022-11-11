@@ -2,11 +2,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <name>OSM Legal Speed</name>
+    <name>${project.groupId}:${project.artifactId}</name>
     <description>OSM Legal Speed is a Java SDK which help determine the legal max speed for most of the countries of the world, with respect to regional legal restrictions, based on OSM tags.</description>
     <url>https://github.com/chargetrip/osm-legal-speed</url>
     <developers>
-        <developer>Cosmin Petrescu (cosmin.petrescu@chargetrip.com)</developer>
+        <developer>
+            <id>cosmin-petrescu</id>
+            <name>Cosmin Petrescu</name>
+            <email>cosmin.petrescu@chargetrip.com</email>
+            <url>https://github.com/cosmin-petrescu</url>
+            <organization>Chargetrip</organization>
+            <organizationUrl>https://www.chargetrip.com</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Bucharest</timezone>
+        </developer>
     </developers>
 
     <groupId>com.chargetrip</groupId>
@@ -33,6 +45,8 @@
     </licenses>
 
     <scm>
+        <connection>https://github.com/chargetrip/osm-legal-speed.git</connection>
+        <developerConnection>https://github.com/chargetrip/osm-legal-speed.git</developerConnection>
         <url>https://github.com/chargetrip/osm-legal-speed.git</url>
     </scm>
 
