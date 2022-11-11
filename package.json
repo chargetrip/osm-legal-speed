@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chargetrip/osm-legal-speed.git"
+    "url": "https://github.com/chargetrip/osm-legal-speed.git"
   },
   "keywords": [
     "osm",
