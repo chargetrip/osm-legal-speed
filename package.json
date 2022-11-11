@@ -96,6 +96,13 @@
         }
       ],
       [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "git add pom.xml CHANGELOG.md"
+        }
+      ],
+      "@semantic-release/github",
+      [
         "./scripts/git.js",
         {
           "assets": [
@@ -104,8 +111,7 @@
           ],
           "message": "chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
         }
-      ],
-      "@semantic-release/github"
+      ]
     ]
   },
   "devDependencies": {

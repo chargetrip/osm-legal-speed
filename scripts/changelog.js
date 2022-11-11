@@ -4,7 +4,8 @@ const { prepare } = require('@semantic-release/changelog');
 
 async function chargetripChangelog(pluginConfig, context) {
   if (context.branch.type !== 'release') {
-    pluginConfig.changelogFile = `docs/changelog/${context.nextRelease.version}.md`;
+    // For release candidates we shouldn't generate change log
+    return;
   }
 
   return prepare(pluginConfig, context);
