@@ -102,7 +102,7 @@
             "pom.xml",
             "CHANGELOG.md"
           ],
-          "message": "chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+          "message": "chore: Release ${nextRelease.version}\n\n${nextRelease.notes}"
         }
       ],
       "@semantic-release/github"
