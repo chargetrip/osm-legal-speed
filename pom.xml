@@ -2,6 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <name>OSM Legal Speed</name>
+    <description>OSM Legal Speed is a Java SDK which help determine the legal max speed for most of the countries of the world, with respect to regional legal restrictions, based on OSM tags.</description>
+    <url>https://github.com/chargetrip/osm-legal-speed</url>
+
     <groupId>com.chargetrip</groupId>
     <artifactId>osm-legal-speed</artifactId>
     <version>1.0.0-rc.10</version>
