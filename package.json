@@ -98,17 +98,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "git add pom.xml CHANGELOG.md && git remote set-url origin https://cosmin-petrescu:${GH_TOKEN}@github.com:chargetrip/osm-legal-speed.git"
-        }
-      ],
-      [
-        "./scripts/git.js",
-        {
-          "assets": [
-            "pom.xml",
-            "CHANGELOG.md"
-          ],
-          "message": "chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+          "prepareCmd": "git add pom.xml CHANGELOG.md && git commit -m \"chore: ${nextRelease.version} [skip ci]\\n\\n${nextRelease.notes}\" && git push --force --tags https://cosmin-petrescu:$GH_TOKEN@github.com:chargetrip/osm-legal-speed.git"
         }
       ],
       "@semantic-release/github"
