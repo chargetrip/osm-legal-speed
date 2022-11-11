@@ -1,3 +1,10 @@
+# [1.0.0-rc.9](https://github.com/chargetrip/osm-legal-speed/compare/1.0.0-rc.8...1.0.0-rc.9) (2022-11-11)
+
+
+### Features
+
+* Java deploy in GHA ([cc02509](https://github.com/chargetrip/osm-legal-speed/commit/cc025096037f7ee013fc8f2eaf40884f5ad60141))
+
 # [1.0.0-rc.8](https://github.com/chargetrip/osm-legal-speed/compare/1.0.0-rc.7...1.0.0-rc.8) (2022-11-11)
 
 
