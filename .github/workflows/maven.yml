@@ -32,7 +32,7 @@ jobs:
       - name: Set up Maven Central Repository
         uses: actions/setup-java@v3
         with:
-          java-version: 14
+          java-version: 17
           cache: 'maven'
           distribution: temurin
           server-id: ossrh
