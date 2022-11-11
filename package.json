@@ -85,7 +85,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "npm version -no-git-tag-version ${nextRelease.version} && ./scripts/version.js ${nextRelease.version}"
+          "prepareCmd": "./scripts/version.js ${nextRelease.version}"
         }
       ],
       "@semantic-release/release-notes-generator",
@@ -100,8 +100,6 @@
         {
           "assets": [
             "pom.xml",
-            "package.json",
-            "package-lock.json",
             "CHANGELOG.md"
           ],
           "message": "chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
