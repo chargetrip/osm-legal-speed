@@ -1,3 +1,10 @@
+# [1.0.0-rc.8](https://github.com/chargetrip/osm-legal-speed/compare/1.0.0-rc.7...1.0.0-rc.8) (2022-11-11)
+
+
+### Features
+
+* Semantic release locally ([5990bd6](https://github.com/chargetrip/osm-legal-speed/commit/5990bd6cf20c0a9488b71d32b79cb315a25ed2fd))
+* Update package.json ([63ab404](https://github.com/chargetrip/osm-legal-speed/commit/63ab404f52133ea9e6d4e874e0406f8cebfef5bd))
 
 # 1.0.0 (2022-11-10)
 
