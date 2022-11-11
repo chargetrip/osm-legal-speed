@@ -102,7 +102,7 @@
         }
       ],
       [
-        "./scripts/git.js",
+        "@semantic-release/git",
         {
           "assets": [
             "pom.xml",
