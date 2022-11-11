@@ -122,10 +122,5 @@ public class SpeedType {
          * Conditional speed inferred from *:conditional tags
          */
         public List<SpeedConditional> speedConditional = null;
-
-        @Override
-        public String toString() {
-            return "speed=" + speed + " (conditional=" + speedConditional + ")";
-        }
     }
 }

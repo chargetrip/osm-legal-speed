@@ -189,6 +189,11 @@
                         <jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
                     </systemPropertyVariables>
                     <excludes>
+                        <exclude>**/Main.class</exclude>
+                        <exclude>**/expression/OperationType.class</exclude>
+                        <exclude>**/types/Certitude.class</exclude>
+                        <exclude>**/types/VehicleType.class</exclude>
+                        <exclude>**/config/**</exclude>
                         <exclude>**/_*.class</exclude>
                     </excludes>
                 </configuration>
@@ -209,13 +214,6 @@
     </build>
 
     <dependencies>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20220924</version>
-            <scope>compile</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
@@ -250,14 +248,19 @@
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>0.8.8</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok-maven-plugin</artifactId>
-            <version>1.18.20.0</version>
-            <scope>provided</scope>
+            <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20220924</version>
+        </dependency>
         <dependency>
             <groupId>org.shredzone.commons</groupId>
             <artifactId>commons-suncalc</artifactId>
@@ -267,6 +270,12 @@
             <groupId>com.mapbox.mapboxsdk</groupId>
             <artifactId>mapbox-sdk-turf</artifactId>
             <version>5.8.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.code.gson</groupId>
+                    <artifactId>gson</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
     </dependencies>

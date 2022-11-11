@@ -1,17 +1,15 @@
 package com.chargetrip.osmLegalSpeed;
 
+import com.chargetrip.osmLegalSpeed.config.ResourceInputStream;
 import com.chargetrip.osmLegalSpeed.expression.ExpressionReader;
 import com.chargetrip.osmLegalSpeed.types.Certitude;
 import com.chargetrip.osmLegalSpeed.types.Options;
 import com.chargetrip.osmLegalSpeed.types.RoadType;
 import com.chargetrip.osmLegalSpeed.types.SpeedType;
-import com.chargetrip.osmLegalSpeed.util.ReaderUtil;
 import com.mapbox.geojson.*;
 import com.mapbox.turf.TurfJoins;
-import lombok.Generated;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
@@ -40,7 +38,7 @@ public class LegalSpeed {
 
     public LegalSpeed() throws IOException, ParseException {
         reader = ExpressionReader.read();
-        countryFeatureCollection = FeatureCollection.fromJson(ReaderUtil.readInputStreamContent(getCountriesInputStream()));
+        countryFeatureCollection = FeatureCollection.fromJson(ResourceInputStream.readCountries());
     }
 
     /**
@@ -134,12 +132,25 @@ public class LegalSpeed {
             return fromMaxSpeed;
         }
 
-        if (!reader.speedLimits.containsKey(countryWithRegion.toUpperCase())) {
-            // We cannot find the country config
-            return null;
+        String countryWithRegionCode = countryWithRegion.toUpperCase();
+
+        if (!reader.speedLimits.containsKey(countryWithRegionCode)) {
+            // We cannot find the country config, we need to check to see if "countryWithRegionCode" contains "-"
+            if (countryWithRegionCode.contains("-")) {
+                String[] countryWithRegionSplit = countryWithRegionCode.split("-");
+                if (!reader.speedLimits.containsKey(countryWithRegionSplit[0])) {
+                    // We still do not have the data for country code, we need to return null
+                    return null;
+                }
+
+                countryWithRegionCode = countryWithRegionSplit[0];
+            } else {
+                // Country code is without region and we do not have it, we need to return null
+                return null;
+            }
         }
 
-        List<SpeedType> countryConfigList = reader.speedLimits.get(countryWithRegion.toUpperCase());
+        List<SpeedType> countryConfigList = reader.speedLimits.get(countryWithRegionCode);
         SpeedType defaultSpeedType = countryConfigList.stream().filter(config -> config.name == null).findFirst().orElse(null);
         SpeedType firstExactSpeedType = null;
         SpeedType firstFuzzySpeedType = null;
@@ -186,11 +197,6 @@ public class LegalSpeed {
         }
 
         return legalSpeedResult;
-    }
-
-    @Generated
-    protected static InputStream getCountriesInputStream() {
-        return LegalSpeed.class.getResourceAsStream("/countries.json");
     }
 
     /**

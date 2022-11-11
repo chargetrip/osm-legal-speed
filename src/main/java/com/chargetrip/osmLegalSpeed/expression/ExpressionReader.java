@@ -1,14 +1,12 @@
 package com.chargetrip.osmLegalSpeed.expression;
 
+import com.chargetrip.osmLegalSpeed.config.ResourceInputStream;
 import com.chargetrip.osmLegalSpeed.types.RoadType;
 import com.chargetrip.osmLegalSpeed.types.SpeedType;
-import com.chargetrip.osmLegalSpeed.util.ReaderUtil;
 import com.chargetrip.osmLegalSpeed.util.StringCursor;
-import lombok.Generated;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.InputStream;
 import java.text.ParseException;
 import java.util.*;
 
@@ -157,16 +155,11 @@ public class ExpressionReader {
      *
      */
     public static ExpressionReader read() throws ParseException {
-        return ExpressionReader.fromJSON(new JSONObject(ReaderUtil.readInputStreamContent(getInputStream()))) //
+        return ExpressionReader.fromJSON(new JSONObject(ResourceInputStream.readLegalSpeed())) //
                 .replacePlaceholders() //
                 .buildRoadTypes() //
                 .buildSpeedLimits() //
                 ;
-    }
-
-    @Generated
-    public static InputStream getInputStream() {
-        return ExpressionReader.class.getResourceAsStream("/legal_default_speeds.json");
     }
 
     @FunctionalInterface

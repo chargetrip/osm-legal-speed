@@ -1,8 +1,5 @@
 package com.chargetrip.osmLegalSpeed.types;
 
-import lombok.Generated;
-
-@Generated
 public enum VehicleType {
     Car,
     Bus,

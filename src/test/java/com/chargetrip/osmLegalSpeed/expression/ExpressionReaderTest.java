@@ -1,8 +1,8 @@
 package com.chargetrip.osmLegalSpeed.expression;
 
+import com.chargetrip.osmLegalSpeed.config.ResourceInputStream;
 import com.chargetrip.osmLegalSpeed.types.RoadType;
 import com.chargetrip.osmLegalSpeed.types.SpeedType;
-import com.chargetrip.osmLegalSpeed.util.ReaderUtil;
 import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 
 public class ExpressionReaderTest {
     @Test
@@ -165,28 +164,21 @@ public class ExpressionReaderTest {
     @Test
     @DisplayName("ExpressionReader read")
     void testRead() {
-        MockedStatic<ReaderUtil> mockedReaderUtil = Mockito.mockStatic(ReaderUtil.class);
-        mockedReaderUtil.when(() -> ReaderUtil.readInputStreamContent(any()))
-                .thenReturn("{\"roadTypesByName\": {\"rural highway\": {\"filter\": \"ref~\\\"(US|AL|I).*\\\"\",\"fuzzyFilter\": \"highway~trunk|trunk_link|primary|primary_link\",\"relationFilter\": \"type=route and route=road and network~\\\"US:(AL|US)(:.*)?\\\"\"},\"rural highway with 2 or more lanes in each direction\": {\"filter\": \"ref\"},\"Carretera general\": {\"filter\": \"ref~CG.*\",\"fuzzyFilter\": \"highway=primary\"},\"Route nationale\": {\"filter\": \"ref~\\\"RN(IE)?.*\\\"\",\"relationFilter\": \"type=route and route=road and name~\\\"RN(IE)?.*\\\"\"}},\n" +
-                        "  \"speedLimitsByCountryCode\": {\"NL\": [{\"tags\": {\"maxspeed\": \"80\",\"maxspeed:bus\": \"80\",\"maxspeed:coach\": \"100\",\"maxspeed:hgv\": \"80\",\"maxspeed:motorhome:conditional\": \"80 @ (maxweightrating>3.5)\"}},{\"name\": \"rural\",\"tags\": {\"maxspeed\": \"80\",\"maxspeed:bus\": \"80\",\"maxspeed:coach\": \"100\",\"maxspeed:hgv\": \"80\",\"maxspeed:motorhome:conditional\": \"80 @ (maxweightrating>3.5)\"}},{\"name\": \"motorway\",\"tags\": {\"maxspeed\": \"130\",\"maxspeed:bus\": \"80\",\"maxspeed:coach\": \"100\",\"maxspeed:conditional\": \"100 @ (06:00-19:00); 90 @ (trailer); 80 @ (maxweightrating>3.5 AND trailer)\",\"maxspeed:hgv\": \"80\",\"maxspeed:motorhome:conditional\": \"80 @ (maxweightrating>3.5)\"}}]}}");
-        MockedStatic<ExpressionReader> mockedExpressionReader = Mockito.mockStatic(ExpressionReader.class);
-        mockedExpressionReader.when(ExpressionReader::getInputStream).thenReturn(null);
-        mockedExpressionReader.when(ExpressionReader::read).thenCallRealMethod();
-        mockedExpressionReader.when(() -> ExpressionReader.fromJSON(any())).thenCallRealMethod();
+        MockedStatic<ResourceInputStream> mockedResourceInputStream = Mockito.mockStatic(ResourceInputStream.class);
+        mockedResourceInputStream.when(ResourceInputStream::readLegalSpeed).thenReturn("{\"roadTypesByName\": {\"rural highway\": {\"filter\": \"ref~\\\"(US|AL|I).*\\\"\",\"fuzzyFilter\": \"highway~trunk|trunk_link|primary|primary_link\",\"relationFilter\": \"type=route and route=road and network~\\\"US:(AL|US)(:.*)?\\\"\"},\"rural highway with 2 or more lanes in each direction\": {\"filter\": \"ref\"},\"Carretera general\": {\"filter\": \"ref~CG.*\",\"fuzzyFilter\": \"highway=primary\"},\"Route nationale\": {\"filter\": \"ref~\\\"RN(IE)?.*\\\"\",\"relationFilter\": \"type=route and route=road and name~\\\"RN(IE)?.*\\\"\"}},\n" +
+                "  \"speedLimitsByCountryCode\": {\"NL\": [{\"tags\": {\"maxspeed\": \"80\",\"maxspeed:bus\": \"80\",\"maxspeed:coach\": \"100\",\"maxspeed:hgv\": \"80\",\"maxspeed:motorhome:conditional\": \"80 @ (maxweightrating>3.5)\"}},{\"name\": \"rural\",\"tags\": {\"maxspeed\": \"80\",\"maxspeed:bus\": \"80\",\"maxspeed:coach\": \"100\",\"maxspeed:hgv\": \"80\",\"maxspeed:motorhome:conditional\": \"80 @ (maxweightrating>3.5)\"}},{\"name\": \"motorway\",\"tags\": {\"maxspeed\": \"130\",\"maxspeed:bus\": \"80\",\"maxspeed:coach\": \"100\",\"maxspeed:conditional\": \"100 @ (06:00-19:00); 90 @ (trailer); 80 @ (maxweightrating>3.5 AND trailer)\",\"maxspeed:hgv\": \"80\",\"maxspeed:motorhome:conditional\": \"80 @ (maxweightrating>3.5)\"}}]}}");
 
         try {
             ExpressionReader reader = ExpressionReader.read();
 
-            mockedExpressionReader.close();
-            mockedReaderUtil.close();
+            mockedResourceInputStream.close();
 
             assertNotNull(reader.roadTypes);
             assertFalse(reader.roadTypes.isEmpty());
             assertNotNull(reader.speedLimits);
             assertFalse(reader.speedLimits.isEmpty());
         } catch (ParseException e) {
-            mockedExpressionReader.close();
-            mockedReaderUtil.close();
+            mockedResourceInputStream.close();
 
             fail();
         }

@@ -1,8 +1,7 @@
 package com.chargetrip.osmLegalSpeed;
 
-import com.chargetrip.osmLegalSpeed.types.VehicleType;
 import com.chargetrip.osmLegalSpeed.types.Options;
-import lombok.Generated;
+import com.chargetrip.osmLegalSpeed.types.VehicleType;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -13,7 +12,6 @@ import java.util.Map;
 /**
  * Example class on how the SDK works
  */
-@Generated
 public class Main {
     public static void main(String[] args) {
         Map<String, String> tags = new HashMap<>();

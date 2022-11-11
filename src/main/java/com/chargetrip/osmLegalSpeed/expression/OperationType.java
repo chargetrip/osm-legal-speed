@@ -1,10 +1,7 @@
 package com.chargetrip.osmLegalSpeed.expression;
 
-import lombok.Generated;
-
 import java.util.regex.Pattern;
 
-@Generated
 public class OperationType {
     public static String OR = "or";
     public static String AND = "and";

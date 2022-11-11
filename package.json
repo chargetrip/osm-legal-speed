@@ -1,0 +1,123 @@
+{
+  "name": "osm-legal-speed",
+  "version": "1.0.0",
+  "description": "OSM Legal Speed is a Java SDK which help determine the legal max speed for most of the countries of the world, with respect to regional legal restrictions, based on OSM tags.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mvn test",
+    "semantic-release": "semantic-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:chargetrip/osm-legal-speed.git"
+  },
+  "keywords": [
+    "osm",
+    "speed"
+  ],
+  "author": "Chargetrip <dev@chargetrip.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/chargetrip/osm-legal-speed/issues"
+  },
+  "homepage": "https://github.com/chargetrip/osm-legal-speed#readme",
+  "release": {
+    "branches": [
+      {
+        "name": "rc",
+        "prerelease": true
+      },
+      {
+        "name": "main",
+        "prerelease": false
+      }
+    ],
+    "tagFormat": "${version}",
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "angular",
+          "releaseRules": [
+            {
+              "type": "*",
+              "scope": "*",
+              "release": false
+            },
+            {
+              "breaking": true,
+              "release": "major"
+            },
+            {
+              "type": "docs",
+              "scope": "*",
+              "release": false
+            },
+            {
+              "type": "feat",
+              "scope": "*",
+              "release": "minor"
+            },
+            {
+              "type": "fix",
+              "scope": "*",
+              "release": "patch"
+            },
+            {
+              "type": "perf",
+              "scope": "*",
+              "release": "patch"
+            },
+            {
+              "type": "refactor",
+              "scope": "*",
+              "release": false
+            }
+          ],
+          "parserOpts": {
+            "noteKeywords": [
+              "BREAKING CHANGE",
+              "BREAKING CHANGES"
+            ]
+          }
+        }
+      ],
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "npm version -no-git-tag-version ${nextRelease.version} && ./scripts/version.js ${nextRelease.version}"
+        }
+      ],
+      "@semantic-release/release-notes-generator",
+      [
+        "./scripts/changelog.js",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      [
+        "./scripts/git.js",
+        {
+          "assets": [
+            "pom.xml",
+            "package.json",
+            "package-lock.json",
+            "CHANGELOG.md"
+          ],
+          "message": "chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ],
+      "@semantic-release/github"
+    ]
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "6.0.1",
+    "@semantic-release/commit-analyzer": "9.0.2",
+    "@semantic-release/exec": "6.0.3",
+    "@semantic-release/git": "10.0.1",
+    "@semantic-release/github": "8.0.6",
+    "@semantic-release/release-notes-generator": "10.0.3",
+    "semantic-release": "19.0.5",
+    "semantic-release-cli": "5.4.4"
+  }
+}
