@@ -16,5 +16,6 @@ jobs:
         with:
           java-version: 14
           cache: 'maven'
+          distribution: temurin
       - name: Maven Test
         run: mvn clean test
