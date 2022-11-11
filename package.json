@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mvn test",
-    "semantic-release": "semantic-release --debug"
+    "build": "CI=true semantic-release"
   },
   "repository": {
     "type": "git",
