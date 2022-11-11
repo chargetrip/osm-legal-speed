@@ -1,3 +1,10 @@
+# [1.0.0-rc.10](https://github.com/chargetrip/osm-legal-speed/compare/1.0.0-rc.9...1.0.0-rc.10) (2022-11-11)
+
+
+### Features
+
+* Release SM ([5f70187](https://github.com/chargetrip/osm-legal-speed/commit/5f701876474e561d4ae7bd13316191f603814c90))
+
 # [1.0.0-rc.9](https://github.com/chargetrip/osm-legal-speed/compare/1.0.0-rc.8...1.0.0-rc.9) (2022-11-11)
 
 
