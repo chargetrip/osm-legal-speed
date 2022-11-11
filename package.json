@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:chargetrip/osm-legal-speed.git"
+    "url": "git+https://github.com/chargetrip/osm-legal-speed.git"
   },
   "keywords": [
     "osm",
@@ -98,7 +98,17 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "git add pom.xml CHANGELOG.md && git commit -m \"chore: ${nextRelease.version} [skip ci]\\n\\n${nextRelease.notes}\" && git push --force --tags https://cosmin-petrescu:$GH_TOKEN@github.com:chargetrip/osm-legal-speed.git"
+          "prepareCmd": "git add pom.xml CHANGELOG.md"
+        }
+      ],
+      [
+        "./scripts/git.js",
+        {
+          "assets": [
+            "pom.xml",
+            "CHANGELOG.md"
+          ],
+          "message": "chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
         }
       ],
       "@semantic-release/github"
