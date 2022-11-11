@@ -20,4 +20,4 @@ data/
 *.pbf
 planet-*
 pom.xml.versionsBackup
-package-lock.json
+
