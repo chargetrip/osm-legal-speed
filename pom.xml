@@ -5,6 +5,9 @@
     <name>OSM Legal Speed</name>
     <description>OSM Legal Speed is a Java SDK which help determine the legal max speed for most of the countries of the world, with respect to regional legal restrictions, based on OSM tags.</description>
     <url>https://github.com/chargetrip/osm-legal-speed</url>
+    <developers>
+        <developer>Cosmin Petrescu (cosmin.petrescu@chargetrip.com)</developer>
+    </developers>
 
     <groupId>com.chargetrip</groupId>
     <artifactId>osm-legal-speed</artifactId>
