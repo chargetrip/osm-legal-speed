@@ -90,7 +90,7 @@
       ],
       "@semantic-release/release-notes-generator",
       [
-        "./scripts/changelog.js",
+        "@semantic-release/changelog",
         {
           "changelogFile": "CHANGELOG.md"
         }
@@ -98,10 +98,9 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "git add pom.xml CHANGELOG.md"
+          "prepareCmd": "git add pom.xml CHANGELOG.md && git remote set-url origin git@${GH_TOKEN}:github.com:chargetrip/osm-legal-speed.git"
         }
       ],
-      "@semantic-release/github",
       [
         "./scripts/git.js",
         {
@@ -111,7 +110,8 @@
           ],
           "message": "chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
         }
-      ]
+      ],
+      "@semantic-release/github"
     ]
   },
   "devDependencies": {
