@@ -96,12 +96,6 @@
         }
       ],
       [
-        "@semantic-release/exec",
-        {
-          "prepareCmd": "git add pom.xml CHANGELOG.md"
-        }
-      ],
-      [
         "@semantic-release/git",
         {
           "assets": [
