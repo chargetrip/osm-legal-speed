@@ -1,3 +1,10 @@
+# [1.0.0-rc.11](https://github.com/chargetrip/osm-legal-speed/compare/1.0.0-rc.10...1.0.0-rc.11) (2022-11-11)
+
+
+### Bug Fixes
+
+* Add missing pom propertires ([c734ddf](https://github.com/chargetrip/osm-legal-speed/commit/c734ddfe3e2ceb6df5aad57dc1abfd3feb31b2a8))
+
 # [1.0.0-rc.10](https://github.com/chargetrip/osm-legal-speed/compare/1.0.0-rc.9...1.0.0-rc.10) (2022-11-11)
 
 
