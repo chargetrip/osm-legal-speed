@@ -36,6 +36,12 @@ public class LegalSpeed {
      */
     protected final FeatureCollection countryFeatureCollection;
 
+    /**
+     * Constructor for the legal speed
+     *
+     * @throws IOException When cannot read config file
+     * @throws ParseException Cannot parse expression from config file
+     */
     public LegalSpeed() throws IOException, ParseException {
         reader = ExpressionReader.read();
         countryFeatureCollection = FeatureCollection.fromJson(ResourceInputStream.readCountries());

@@ -16,6 +16,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+/**
+ * Parser class for complex expressions
+ */
 public class ExpressionParser {
     /**
      * The string cursor used to parse the input value
@@ -37,6 +40,11 @@ public class ExpressionParser {
      */
     protected List<TagOperation> allParentheses;
 
+    /**
+     * Constructor of the parser
+     *
+     * @param value The string expression to parse
+     */
     public ExpressionParser(String value) {
         this.cursor = new StringCursor(value);
     }

@@ -3,14 +3,50 @@ package com.chargetrip.osmLegalSpeed.expression.operation;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+/**
+ * Date and time operation
+ */
 public class DateTimeOperation implements TimeOperation {
+    /**
+     * Start month of the operation
+     */
     public final int startMonth;
+
+    /**
+     * End month of the operation
+     */
     public final int endMonth;
+
+    /**
+     * Start day of week of the operation
+     */
     public final int startWeek;
+
+    /**
+     * End day of week of the operation
+     */
     public final int endWeek;
+
+    /**
+     * Start time of the operation
+     */
     public final LocalDateTime startTime;
+
+    /**
+     * End time of the operation
+     */
     public final LocalDateTime endTime;
 
+    /**
+     * Constructor of the operation
+     *
+     * @param startMonth Start month index restriction. If zero there are no month restrictions
+     * @param endMonth End month index restriction. If zero there are no month restrictions
+     * @param startWeek Start day of week index restriction. If -1 there are no month restrictions
+     * @param endWeek End day of week index restriction. If -1 there are no month restrictions
+     * @param startTime Start time index restriction. If null there are no month restrictions
+     * @param endTime End time index restriction. If null there are no month restrictions
+     */
     public DateTimeOperation(
             int startMonth,
             int endMonth,
@@ -47,6 +83,12 @@ public class DateTimeOperation implements TimeOperation {
         return "(" + (month + " " + week + " " + time).trim() + ")";
     }
 
+    /**
+     * Check if the month interval is valid, if and only if there are month restrictions
+     *
+     * @param date The data and time to check against
+     * @return If the month interval is valid
+     */
     protected boolean isValidMonth(LocalDateTime date) {
         if (startMonth == 0 || endMonth == 0) {
             // We do not have month restriction
@@ -62,6 +104,12 @@ public class DateTimeOperation implements TimeOperation {
         return startMonth <= currentMonth && currentMonth <= endMonth;
     }
 
+    /**
+     * Check if the days of week interval is valid, if and only if there are week restrictions
+     *
+     * @param date The data and time to check against
+     * @return If the days of week interval is valid
+     */
     protected boolean isValidWeek(LocalDateTime date) {
         if (startWeek == -1 || endWeek == -1) {
             // We do not have day of week restriction
@@ -77,6 +125,12 @@ public class DateTimeOperation implements TimeOperation {
         return startWeek <= currentWeekDay && currentWeekDay <= endWeek;
     }
 
+    /**
+     * Check if the time interval is valid, if and only if there are time restrictions
+     *
+     * @param date The time to check against
+     * @return If the time interval is valid
+     */
     protected boolean isValidTime(LocalDateTime date) {
         if (startTime == null || endTime == null) {
             // We do not have time restriction
@@ -92,6 +146,12 @@ public class DateTimeOperation implements TimeOperation {
         return (currentDatetime.isAfter(startTime) || currentDatetime.isEqual(startTime)) && (currentDatetime.isBefore(endTime) || currentDatetime.isEqual(endTime));
     }
 
+    /**
+     * Getting the numeric index of month from month string
+     *
+     * @param monthValue The month string label
+     * @return Index of month
+     */
     public static int getMonthIndex(String monthValue) {
         return switch (monthValue.toLowerCase()) {
             case "jan" -> 1;
@@ -110,6 +170,12 @@ public class DateTimeOperation implements TimeOperation {
         };
     }
 
+    /**
+     * Getting the month string label from month index
+     *
+     * @param monthIndex The month index
+     * @return The month label
+     */
     public static String getMonthName(int monthIndex) {
         return switch (monthIndex) {
             case 1 -> "jan";
@@ -128,6 +194,12 @@ public class DateTimeOperation implements TimeOperation {
         };
     }
 
+    /**
+     * Getting get day of week index from the day of week string label
+     *
+     * @param weekValue The day of week string label
+     * @return Index of day of week
+     */
     public static int getWeekIndex(String weekValue) {
         return switch (weekValue.toLowerCase()) {
             case "mo" -> 0;
@@ -141,6 +213,12 @@ public class DateTimeOperation implements TimeOperation {
         };
     }
 
+    /**
+     * Getting the day of week string label from index
+     *
+     * @param weekIndex Index of day of week
+     * @return The day of week label
+     */
     public static String getWeekName(int weekIndex) {
         return switch (weekIndex) {
             case 0 -> "mo";

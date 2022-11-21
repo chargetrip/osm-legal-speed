@@ -10,6 +10,9 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Parser for tag operations
+ */
 public class OperationParser {
     /**
      * List of all possible operators, sorted
@@ -50,6 +53,11 @@ public class OperationParser {
      */
     public final StringCursor cursor;
 
+    /**
+     * Constructor for parser
+     *
+     * @param value The value to parse
+     */
     public OperationParser(String value) {
         this.cursor = new StringCursor(value);
     }
@@ -105,6 +113,8 @@ public class OperationParser {
      *
      * @param like Flag which indicate if LIKE is present
      * @param cursorValue The value which should be parsed as key
+     *
+     * @return Operation
      */
     protected TagOperation extractNegativeOperation(boolean like, String cursorValue) {
         return like
@@ -117,6 +127,8 @@ public class OperationParser {
      *
      * @param like Flag which indicate if LIKE is present
      * @param cursorValue The value which should be parsed as key
+     *
+     * @return Operation
      */
     protected TagOperation extractKeyOperation(boolean like, String cursorValue) {
         return like
@@ -130,8 +142,8 @@ public class OperationParser {
      * @param operator The operator of the operation
      * @param key The key of the operation
      * @param value The value of the operation
-
-     * @throws ParseException In case the operator cannot be interpreted
+     *
+     * @return Operation
      */
     protected TagOperation extractKeyValueOperation(String operator, String key, String value) {
         if (operator.equalsIgnoreCase(OperationType.EQUALS)) {
@@ -154,6 +166,7 @@ public class OperationParser {
      * @param key The key of the operation
      * @param value The value of the operation
      *
+     * @return Operation
      * @throws ParseException In case the value is not a valid number or the operator cannot be interpreted
      */
     protected TagOperation extractComparisonOperation(String operator, String key, String value) throws ParseException {
@@ -177,6 +190,8 @@ public class OperationParser {
 
     /**
      * Getting the operator of the operation, is exists, otherwise return null
+     *
+     * @return Operator
      */
     protected String getOperator() {
         String cursorValue = cursor.value.substring(cursor.currentPosition);

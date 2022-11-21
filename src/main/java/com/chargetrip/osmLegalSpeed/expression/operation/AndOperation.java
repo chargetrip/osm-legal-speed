@@ -4,6 +4,9 @@ import com.chargetrip.osmLegalSpeed.expression.OperationType;
 
 import java.util.Map;
 
+/**
+ * The AND operation
+ */
 public class AndOperation extends TreeOperation {
     @Override
     public boolean matches(Map<String, String> object) {

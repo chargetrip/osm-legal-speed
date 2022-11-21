@@ -13,6 +13,11 @@ import java.util.Map;
  * Example class on how the SDK works
  */
 public class Main {
+    /**
+     * Main method as an example
+     *
+     * @param args Input arguments
+     */
     public static void main(String[] args) {
         Map<String, String> tags = new HashMap<>();
         tags.put("type", "route");

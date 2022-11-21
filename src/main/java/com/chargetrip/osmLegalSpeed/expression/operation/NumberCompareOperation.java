@@ -4,10 +4,26 @@ import com.chargetrip.osmLegalSpeed.util.NumberUtil;
 
 import java.util.Map;
 
+/**
+ * Numeric operation
+ */
 public abstract class NumberCompareOperation implements TagOperation {
+    /**
+     * The key name used to extract the number value
+     */
     protected final String key;
+
+    /**
+     * The value to compare against
+     */
     protected final double value;
 
+    /**
+     * Constructor for operation
+     *
+     * @param key The key name of the tag which hold the numeric value
+     * @param value The numeric value to compare against
+     */
     public NumberCompareOperation(String key, double value) {
         this.key = key;
         this.value = value;

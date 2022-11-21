@@ -1,5 +1,8 @@
 package com.chargetrip.osmLegalSpeed.types;
 
+/**
+ * Enum for certitude level
+ */
 public enum Certitude {
     /**
      * It is an exact match with the road type. I.e., the tag filter for the road type matched.

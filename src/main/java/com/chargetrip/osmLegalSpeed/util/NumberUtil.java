@@ -3,10 +3,26 @@ package com.chargetrip.osmLegalSpeed.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Utility class for numbers
+ */
 public class NumberUtil {
+    /**
+     * Regular expression for feet and inch expression
+     */
     private static final Pattern feetInchRegex = Pattern.compile("([0-9]+)\\s*(?:'|ft)\\s*([0-9]+)\\s*(?:\"|in)");
+
+    /**
+     * Regular expression for number with unit
+     */
     private static final Pattern withUnitRegex = Pattern.compile("([0-9]+|[0-9]*\\.[0-9]+)\\s*([a-z\'\"]+)");
 
+    /**
+     * Getting a value or null
+     *
+     * @param value The string expression
+     * @return The numeric value
+     */
     public static Double withOptionalUnitToDoubleOrNull(String value) {
         if (value.isEmpty()) {
             return null;
@@ -42,6 +58,12 @@ public class NumberUtil {
         return null;
     }
 
+    /**
+     * Convert the numeric value based on the unit
+     *
+     * @param unit The input unit
+     * @return The numeric value
+     */
     public static Double toStandardUnitsFactor(String unit) {
         return switch (unit) {
             // speed: to kilometers per hour

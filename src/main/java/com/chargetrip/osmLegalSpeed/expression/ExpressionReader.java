@@ -10,6 +10,9 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.util.*;
 
+/**
+ * Reader class for complex expressions
+ */
 public class ExpressionReader {
     /**
      * Map with all the road type rules
@@ -23,6 +26,8 @@ public class ExpressionReader {
 
     /**
      * Replace all the placeholders with the rules of them
+     *
+     * @return self
      */
     public ExpressionReader replacePlaceholders() {
         for (String key : roadTypes.keySet()) {
@@ -50,6 +55,9 @@ public class ExpressionReader {
 
     /**
      * Building the operations for all road types
+     *
+     * @return self
+     * @throws ParseException When cannot parse expression
      */
     public ExpressionReader buildRoadTypes() throws ParseException {
         for (String key : roadTypes.keySet()) {
@@ -61,6 +69,8 @@ public class ExpressionReader {
 
     /**
      * Building the operations for all speed limits
+     *
+     * @return self
      */
     public ExpressionReader buildSpeedLimits() {
         for (String country : speedLimits.keySet()) {
@@ -153,6 +163,8 @@ public class ExpressionReader {
     /**
      * Read the config from file and load it
      *
+     * @return New instance of parser
+     * @throws ParseException When cannot parse expression
      */
     public static ExpressionReader read() throws ParseException {
         return ExpressionReader.fromJSON(new JSONObject(ResourceInputStream.readLegalSpeed())) //
@@ -162,8 +174,17 @@ public class ExpressionReader {
                 ;
     }
 
+    /**
+     * Class for getting the filter
+     */
     @FunctionalInterface
     protected interface GetFilter {
+        /**
+         * Get method
+         *
+         * @param roadType Type of the road
+         * @return The placeholder
+         */
         String get(RoadType roadType);
     }
 }
