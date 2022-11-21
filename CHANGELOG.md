@@ -1,3 +1,11 @@
+## [1.0.1-rc.4](https://github.com/chargetrip/osm-legal-speed/compare/1.0.1-rc.3...1.0.1-rc.4) (2022-11-21)
+
+
+### Bug Fixes
+
+* **ci:** Put back maven GHA ([b6cbce2](https://github.com/chargetrip/osm-legal-speed/commit/b6cbce26b7127642e6cbfb9f414d777103b04041))
+* **test:** Make sure tests run on UTC timezone ([a3128ed](https://github.com/chargetrip/osm-legal-speed/commit/a3128ed2b18ec50620e6e8e16685dd02939bbd72))
+
 ## [1.0.1-rc.3](https://github.com/chargetrip/osm-legal-speed/compare/1.0.1-rc.2...1.0.1-rc.3) (2022-11-21)
 
 
