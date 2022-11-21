@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Publish
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
       - rc
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
