@@ -6,7 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Map;
-import java.util.stream.Stream;
+import java.util.TimeZone;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,6 +14,8 @@ public class SunTimeOperationTest {
     @Test
     @DisplayName("SunTimeOperation not match without GPS")
     void testNoMatchGPS() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+
         SunTimeOperation operation = new SunTimeOperation(
                 new SunTimeOperation.SunOffset(true, 0, 30),
                 new SunTimeOperation.SunOffset(true, 0, 30),
@@ -34,6 +36,8 @@ public class SunTimeOperationTest {
     @Test
     @DisplayName("SunTimeOperation not match without date")
     void testNoMatchDate() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+
         SunTimeOperation operation = new SunTimeOperation(
                 new SunTimeOperation.SunOffset(true, 0, 30),
                 new SunTimeOperation.SunOffset(true, 0, 30),
@@ -51,11 +55,13 @@ public class SunTimeOperationTest {
     @ParameterizedTest
     @ValueSource(strings = {
             "2022-06-07T12:00:00.000",
-            "2022-06-06T22:55:00.000",
-            "2022-06-07T06:22:00.000"
+            "2022-06-06T19:55:00.000",
+            "2022-06-07T03:22:00.000"
     })
     @DisplayName("SunTimeOperation not match because of time interval")
     void testNoMatchTime(String date) {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+
         SunTimeOperation operation = new SunTimeOperation(
                 new SunTimeOperation.SunOffset(true, 0, 0),
                 new SunTimeOperation.SunOffset(false, 0, 0),
@@ -73,11 +79,13 @@ public class SunTimeOperationTest {
     @ParameterizedTest
     @ValueSource(strings = {
             "2022-06-07T00:00:00.000",
-            "2022-06-06T22:57:00.000",
-            "2022-06-07T06:20:00.000"
+            "2022-06-06T19:57:00.000",
+            "2022-06-07T03:20:00.000"
     })
     @DisplayName("SunTimeOperation match sunset first")
     void testMatchSunsetFirst(String date) {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+
         SunTimeOperation operation = new SunTimeOperation(
                 new SunTimeOperation.SunOffset(false, 0, 0),
                 new SunTimeOperation.SunOffset(true, 0, 0),
@@ -95,11 +103,13 @@ public class SunTimeOperationTest {
     @ParameterizedTest
     @ValueSource(strings = {
             "2022-06-07T12:00:00.000",
-            "2022-06-06T22:57:00.000",
-            "2022-06-07T06:20:00.000"
+            "2022-06-06T19:57:00.000",
+            "2022-06-07T03:20:00.000"
     })
     @DisplayName("SunTimeOperation match sunrise first")
     void testMatchSunriseFirst(String date) {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+
         SunTimeOperation operation = new SunTimeOperation(
                 new SunTimeOperation.SunOffset(false, 0, 0),
                 new SunTimeOperation.SunOffset(true, 0, 0),
@@ -118,6 +128,8 @@ public class SunTimeOperationTest {
     @Test
     @DisplayName("SunTimeOperation toString negative values")
     void testToStringNegativeValues() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+
         SunTimeOperation operation = new SunTimeOperation(
                 new SunTimeOperation.SunOffset(true, 0, 30),
                 new SunTimeOperation.SunOffset(true, 0, 30),
@@ -130,6 +142,8 @@ public class SunTimeOperationTest {
     @Test
     @DisplayName("SunTimeOperation toString positive values")
     void testToStringPositiveValues() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+
         SunTimeOperation operation = new SunTimeOperation(
                 new SunTimeOperation.SunOffset(false, 0, 30),
                 new SunTimeOperation.SunOffset(false, 0, 30),
@@ -142,6 +156,8 @@ public class SunTimeOperationTest {
     @Test
     @DisplayName("SunTimeOperation toString sunrise first")
     void testToStringSunriseFirst() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+
         SunTimeOperation operation = new SunTimeOperation(
                 new SunTimeOperation.SunOffset(false, 0, 30),
                 new SunTimeOperation.SunOffset(false, 0, 30),
@@ -154,6 +170,8 @@ public class SunTimeOperationTest {
     @Test
     @DisplayName("SunTimeOperation.SunTime plus and minus")
     void testSunTime() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+
         SunTimeOperation.SunTime sunTime = new SunTimeOperation.SunTime(0, 0);
 
         sunTime.plusHours(49);
