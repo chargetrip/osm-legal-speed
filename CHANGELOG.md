@@ -1,3 +1,10 @@
+## [1.0.1-rc.5](https://github.com/chargetrip/osm-legal-speed/compare/1.0.1-rc.4...1.0.1-rc.5) (2022-11-21)
+
+
+### Bug Fixes
+
+* Added missing doc blocks ([7dcbfad](https://github.com/chargetrip/osm-legal-speed/commit/7dcbfadc2b8cc5ad00167c82903da8a82bf47e38))
+
 ## [1.0.1-rc.4](https://github.com/chargetrip/osm-legal-speed/compare/1.0.1-rc.3...1.0.1-rc.4) (2022-11-21)
 
 
