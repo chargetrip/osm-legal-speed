@@ -1,3 +1,10 @@
+## [1.0.1-rc.3](https://github.com/chargetrip/osm-legal-speed/compare/1.0.1-rc.2...1.0.1-rc.3) (2022-11-21)
+
+
+### Bug Fixes
+
+* **ci:** Update GHA publish action ([3bac9bd](https://github.com/chargetrip/osm-legal-speed/commit/3bac9bdd64077bbf76cf1a3ca26df704ef38ec5e))
+
 ## [1.0.1-rc.2](https://github.com/chargetrip/osm-legal-speed/compare/1.0.1-rc.1...1.0.1-rc.2) (2022-11-21)
 
 
