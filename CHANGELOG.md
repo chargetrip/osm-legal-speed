@@ -1,3 +1,10 @@
+## [1.0.1-rc.1](https://github.com/chargetrip/osm-legal-speed/compare/1.0.0...1.0.1-rc.1) (2022-11-21)
+
+
+### Bug Fixes
+
+* **ci:** Use  for packaging ([9c2cca6](https://github.com/chargetrip/osm-legal-speed/commit/9c2cca6f8fde0a7290dd623eb176f69b9ff0db82))
+
 # 1.0.0 (2022-11-11)
 
 
