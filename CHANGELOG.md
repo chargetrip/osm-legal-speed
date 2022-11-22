@@ -1,3 +1,10 @@
+## [1.0.1-rc.6](https://github.com/chargetrip/osm-legal-speed/compare/1.0.1-rc.5...1.0.1-rc.6) (2022-11-22)
+
+
+### Bug Fixes
+
+* Moved resources and fix number parse ; ([824a667](https://github.com/chargetrip/osm-legal-speed/commit/824a667fc33c17581b0693845139b68c68004048))
+
 ## [1.0.1-rc.5](https://github.com/chargetrip/osm-legal-speed/compare/1.0.1-rc.4...1.0.1-rc.5) (2022-11-21)
 
 
