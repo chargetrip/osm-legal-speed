@@ -24,6 +24,9 @@ public class NumberUtilTest {
         assertEquals(NumberUtil.withOptionalUnitToDoubleOrNull("10 ft 100 in"), 5.588);
         assertNull(NumberUtil.withOptionalUnitToDoubleOrNull("a1"));
         assertNull(NumberUtil.withOptionalUnitToDoubleOrNull("10.a cm"));
+        assertEquals(NumberUtil.withOptionalUnitToDoubleOrNull("50;30"), 50);
+        assertEquals(NumberUtil.withOptionalUnitToDoubleOrNull("90 ;70"), 90);
+        assertEquals(NumberUtil.withOptionalUnitToDoubleOrNull("90; 70"), 90);
     }
 
     @Test

@@ -9,7 +9,7 @@ public class ResourceInputStream {
      * Return the countries resource input stream
      */
     public static InputStream getCountriesInputStream() {
-        return ResourceInputStream.class.getResourceAsStream("/countries.json");
+        return ResourceInputStream.class.getResourceAsStream("/com/chargetrip/osmLegalSpeed/countries.json");
     }
 
     /**
@@ -23,7 +23,7 @@ public class ResourceInputStream {
      * Return the legal default speeds resource input stream
      */
     public static InputStream getLegalSpeedInputStream() {
-        return ResourceInputStream.class.getResourceAsStream("/legal_default_speeds.json");
+        return ResourceInputStream.class.getResourceAsStream("/com/chargetrip/osmLegalSpeed/legal_default_speeds.json");
     }
 
     /**

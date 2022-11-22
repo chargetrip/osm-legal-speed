@@ -28,6 +28,11 @@ public class NumberUtil {
             return null;
         }
 
+        // In case the value has ";" in it, we take only the part before it
+        if (value.contains(";")) {
+            value = value.split(";")[0].trim();
+        }
+
         char first = value.charAt(0);
         if (!Character.isDigit(first) && first != '.') {
             return null;

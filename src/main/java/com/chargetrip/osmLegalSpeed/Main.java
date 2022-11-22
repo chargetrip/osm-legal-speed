@@ -48,6 +48,11 @@ public class Main {
                 options.vehicle = vehicle;
                 System.out.println("- " + vehicle + ": " + legalSpeed.getSpeedLimit(tags, options));
             }
+
+            // How to get speed from maxspeed tag
+            options.vehicle = VehicleType.Car;
+            tags.put("maxspeed", "50;30");
+            System.out.println("From maxspeed: " + legalSpeed.getSpeedLimit(tags, options));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
