@@ -1,3 +1,16 @@
+## [1.0.1](https://github.com/chargetrip/osm-legal-speed/compare/1.0.0...1.0.1) (2022-11-22)
+
+
+### Bug Fixes
+
+* Added missing doc blocks ([7dcbfad](https://github.com/chargetrip/osm-legal-speed/commit/7dcbfadc2b8cc5ad00167c82903da8a82bf47e38))
+* **ci:** Put back maven GHA ([b6cbce2](https://github.com/chargetrip/osm-legal-speed/commit/b6cbce26b7127642e6cbfb9f414d777103b04041))
+* **ci:** Update GHA publish action ([3bac9bd](https://github.com/chargetrip/osm-legal-speed/commit/3bac9bdd64077bbf76cf1a3ca26df704ef38ec5e))
+* **ci:** Update GHA workflow ([2a3bdf8](https://github.com/chargetrip/osm-legal-speed/commit/2a3bdf83a7f8cbcdc445be139e28e08c25fc20c6))
+* **ci:** Use  for packaging ([9c2cca6](https://github.com/chargetrip/osm-legal-speed/commit/9c2cca6f8fde0a7290dd623eb176f69b9ff0db82))
+* Moved resources and fix number parse ; ([824a667](https://github.com/chargetrip/osm-legal-speed/commit/824a667fc33c17581b0693845139b68c68004048))
+* **test:** Make sure tests run on UTC timezone ([a3128ed](https://github.com/chargetrip/osm-legal-speed/commit/a3128ed2b18ec50620e6e8e16685dd02939bbd72))
+
 ## [1.0.1-rc.6](https://github.com/chargetrip/osm-legal-speed/compare/1.0.1-rc.5...1.0.1-rc.6) (2022-11-22)
 
 
