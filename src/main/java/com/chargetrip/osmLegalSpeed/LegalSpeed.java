@@ -123,23 +123,7 @@ public class LegalSpeed {
             String countryWithRegion,
             boolean fuzzySearch
     ) {
-        List<String> maxSpeedKeys = tags.keySet().stream().filter(key -> maxSpeedTags.matcher(key).find()).collect(Collectors.toList());
-        if (!maxSpeedKeys.isEmpty()) {
-            SearchResult fromMaxSpeed = new SearchResult();
-            fromMaxSpeed.roadType = null;
-            fromMaxSpeed.certitude = Certitude.FromMaxSpeed;
-            fromMaxSpeed.speedType = new SpeedType();
-            for (String key : maxSpeedKeys) {
-                fromMaxSpeed.speedType.tags.put(key, tags.get(key));
-            }
-            fromMaxSpeed.speedType.build();
-
-            // We have the max speed from OSM tags
-            return fromMaxSpeed;
-        }
-
         String countryWithRegionCode = countryWithRegion.toUpperCase();
-
         if (!reader.speedLimits.containsKey(countryWithRegionCode)) {
             // We cannot find the country config, we need to check to see if "countryWithRegionCode" contains "-"
             if (countryWithRegionCode.contains("-")) {
@@ -151,12 +135,28 @@ public class LegalSpeed {
 
                 countryWithRegionCode = countryWithRegionSplit[0];
             } else {
-                // Country code is without region and we do not have it, we need to return null
+                // Country code is without region, and we do not have it, we need to return null
                 return null;
             }
         }
 
         List<SpeedType> countryConfigList = reader.speedLimits.get(countryWithRegionCode);
+
+        List<String> maxSpeedKeys = tags.keySet().stream().filter(key -> maxSpeedTags.matcher(key).find()).collect(Collectors.toList());
+        if (!maxSpeedKeys.isEmpty()) {
+            SearchResult fromMaxSpeed = new SearchResult();
+            fromMaxSpeed.roadType = null;
+            fromMaxSpeed.certitude = Certitude.FromMaxSpeed;
+            fromMaxSpeed.speedType = new SpeedType();
+            for (String key : maxSpeedKeys) {
+                fromMaxSpeed.speedType.tags.put(key, tags.get(key));
+            }
+            fromMaxSpeed.speedType.build(countryConfigList);
+
+            // We have the max speed from OSM tags
+            return fromMaxSpeed;
+        }
+
         SpeedType defaultSpeedType = countryConfigList.stream().filter(config -> config.name == null).findFirst().orElse(null);
         SpeedType firstExactSpeedType = null;
         SpeedType firstFuzzySpeedType = null;

@@ -115,4 +115,9 @@ public class OperationType {
      * Regular expression for time restriction operation
      */
     public static Pattern dateTimeTime = Pattern.compile("([0-9]{2}):([0-9]{2})-([0-9]{2}):([0-9]{2})", Pattern.CASE_INSENSITIVE);
+
+    /**
+     * Regular expression for detecting country default speed rules
+     */
+    public static Pattern countryDefaultRule = Pattern.compile("([a-z]{2}):(.*)", Pattern.CASE_INSENSITIVE);
 }

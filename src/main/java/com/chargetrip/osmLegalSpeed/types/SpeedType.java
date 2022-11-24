@@ -1,12 +1,15 @@
 package com.chargetrip.osmLegalSpeed.types;
 
+import com.chargetrip.osmLegalSpeed.expression.OperationType;
 import com.chargetrip.osmLegalSpeed.expression.parser.SpeedConditionalParser;
 import com.chargetrip.osmLegalSpeed.util.NumberUtil;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
 
 public class SpeedType {
     /**
@@ -53,9 +56,18 @@ public class SpeedType {
     }
 
     /**
-     * Build the rules for each vehicle type with respect to *:conditional tags
+     * Build the rules for each vehicle type with respect to *:conditional tags, without any existing speed limits
      */
     public void build() {
+        build(new ArrayList<>());
+    }
+
+    /**
+     * Build the rules for each vehicle type with respect to *:conditional tags
+     *
+     * @param countryConfigList An array with all the speed config of a country
+     */
+    public void build(List<SpeedType> countryConfigList) {
         vehicleSpeedType = new HashMap<>();
         Map<VehicleType, List<String>> vehicleListMap = Options.getVehicleSpeedTags();
 
@@ -64,11 +76,22 @@ public class SpeedType {
                 if (tags.containsKey(tag)) {
                     VehicleSpeedType vst = new VehicleSpeedType();
                     Double speed = NumberUtil.withOptionalUnitToDoubleOrNull(tags.get(tag));
-                    if (speed == null) {
-                        continue;
+                    if (speed != null) {
+                        vst.speed = speed.floatValue();
                     }
 
-                    vst.speed = speed.floatValue();
+                    if (tag.equalsIgnoreCase("maxspeed")) {
+                        if (tags.get(tag).equalsIgnoreCase("walk")) {
+                            // Default walk speed is 5 km/h
+                            vst.speed = 5.0f;
+                        } else {
+                            Matcher matcher = OperationType.countryDefaultRule.matcher(tags.get(tag));
+//                            System.out.println("Find: "  + matcher.find() + "; " + tags.get(tag));
+                            if (matcher.find()) {
+                                vst.parent = this.searchSpeedTypeParent(countryConfigList, matcher.group(2));
+                            }
+                        }
+                    }
 
                     if (tags.containsKey(tag + ":conditional")) {
                         SpeedConditionalParser speedConditionalParser = new SpeedConditionalParser(tags.get(tag + ":conditional"));
@@ -106,7 +129,32 @@ public class SpeedType {
             }
         }
 
-        return speedType.speed;
+        if (speedType.speed != null) {
+            return speedType.speed;
+        }
+
+        if (speedType.parent != null) {
+            return speedType.parent.getSpeedForVehicle(vehicle, optionTags);
+        }
+
+        return null;
+    }
+
+    /**
+     * Searching the speed type parent based on parent name
+     *
+     * @param countryConfigList The list of possible parents
+     * @param name The name of the parent to search for
+     * @return The parent speed type, if exists, otherwise null
+     */
+    protected SpeedType searchSpeedTypeParent(List<SpeedType> countryConfigList, String name) {
+        for (SpeedType speedType : countryConfigList) {
+            if (name.equalsIgnoreCase(speedType.name)) {
+                return speedType;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -114,9 +162,14 @@ public class SpeedType {
      */
     public static class VehicleSpeedType {
         /**
-         * Default speed value, in km/h, inferred from tags without *:conditional
+         * Parent rule to infer the speed value
          */
-        public float speed;
+        public SpeedType parent = null;
+
+        /**
+         * Default speed value, in km/h, inferred from tags without *:conditional, if is not inferred from another rule
+         */
+        public Float speed = null;
 
         /**
          * Conditional speed inferred from *:conditional tags

@@ -52,7 +52,10 @@ public class Main {
             // How to get speed from maxspeed tag
             options.vehicle = VehicleType.Car;
             tags.put("maxspeed", "50;30");
-            System.out.println("From maxspeed: " + legalSpeed.getSpeedLimit(tags, options));
+            System.out.println("From maxspeed with multiple values: " + legalSpeed.getSpeedLimit(tags, options));
+
+            tags.put("maxspeed", "NL:urban");
+            System.out.println("From maxspeed with parent rule: " + legalSpeed.getSpeedLimit(tags, options));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
