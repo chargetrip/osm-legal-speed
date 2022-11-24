@@ -1,3 +1,10 @@
+## [1.0.2-rc.1](https://github.com/chargetrip/osm-legal-speed/compare/1.0.1...1.0.2-rc.1) (2022-11-24)
+
+
+### Bug Fixes
+
+* Walking speed and maxspeed with country rules ([5416dcf](https://github.com/chargetrip/osm-legal-speed/commit/5416dcf8e05ada2bda03392e47c83ebac6e99fae))
+
 ## [1.0.1](https://github.com/chargetrip/osm-legal-speed/compare/1.0.0...1.0.1) (2022-11-22)
 
 
