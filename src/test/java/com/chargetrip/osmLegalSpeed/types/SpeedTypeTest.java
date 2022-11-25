@@ -117,6 +117,17 @@ public class SpeedTypeTest {
     }
 
     @Test
+    @DisplayName("SpeedType getVehicleSpeedTags empty")
+    void testGetVehicleSpeedTagsEmpty() {
+        SpeedType speedType = new SpeedType();
+        speedType.name = "Name";
+
+        speedType.build();
+
+        assertNull(speedType.getSpeedForVehicle(VehicleType.Car, new HashMap<>()));
+    }
+
+    @Test
     @DisplayName("SpeedType getVehicleSpeedTags infer from parent")
     void testGetVehicleSpeedTagsFromParent() {
         SpeedType speedType = new SpeedType();

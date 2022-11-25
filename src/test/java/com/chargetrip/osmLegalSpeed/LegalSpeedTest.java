@@ -59,7 +59,8 @@ public class LegalSpeedTest {
                 new SpeedLimitTestSource(100.0f, optionsInNL, Map.of("highway", "motorway")),
                 new SpeedLimitTestSource(null, optionsInUS, Map.of("highway", "motorway")),
                 new SpeedLimitTestSource(null, optionsNoLat, Map.of("highway", "motorway")),
-                new SpeedLimitTestSource(null, optionsNoLng, Map.of("highway", "motorway"))
+                new SpeedLimitTestSource(null, optionsNoLng, Map.of("highway", "motorway")),
+                new SpeedLimitTestSource(80.0f, optionsInNL, Map.of("maxspeed", "NL:trunk"))
         );
     }
 
