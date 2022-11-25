@@ -1,3 +1,10 @@
+## [1.0.2-rc.2](https://github.com/chargetrip/osm-legal-speed/compare/1.0.2-rc.1...1.0.2-rc.2) (2022-11-25)
+
+
+### Bug Fixes
+
+* Ignore OSM maxspeed if cannot get value from it ([87c06e8](https://github.com/chargetrip/osm-legal-speed/commit/87c06e8ea6517773a393d4c59c3f66ad6c3cb911))
+
 ## [1.0.2-rc.1](https://github.com/chargetrip/osm-legal-speed/compare/1.0.1...1.0.2-rc.1) (2022-11-24)
 
 
