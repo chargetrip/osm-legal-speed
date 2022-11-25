@@ -2,15 +2,13 @@ package com.chargetrip.osmLegalSpeed;
 
 import com.chargetrip.osmLegalSpeed.config.ResourceInputStream;
 import com.chargetrip.osmLegalSpeed.expression.ExpressionReader;
-import com.chargetrip.osmLegalSpeed.types.Certitude;
-import com.chargetrip.osmLegalSpeed.types.Options;
-import com.chargetrip.osmLegalSpeed.types.RoadType;
-import com.chargetrip.osmLegalSpeed.types.SpeedType;
+import com.chargetrip.osmLegalSpeed.types.*;
 import com.mapbox.geojson.*;
 import com.mapbox.turf.TurfJoins;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -153,8 +151,11 @@ public class LegalSpeed {
             }
             fromMaxSpeed.speedType.build(countryConfigList);
 
-            // We have the max speed from OSM tags
-            return fromMaxSpeed;
+            // We check to see if we have a valid max speed from OSM tags
+            if (fromMaxSpeed.speedType.getSpeedForVehicle(VehicleType.Car, new HashMap<>()) != null) {
+                // We have a valid max speed from OSM tags
+                return fromMaxSpeed;
+            }
         }
 
         SpeedType defaultSpeedType = countryConfigList.stream().filter(config -> config.name == null).findFirst().orElse(null);

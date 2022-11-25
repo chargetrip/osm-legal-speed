@@ -56,6 +56,12 @@ public class Main {
 
             tags.put("maxspeed", "NL:urban");
             System.out.println("From maxspeed with parent rule: " + legalSpeed.getSpeedLimit(tags, options));
+
+            tags.put("maxspeed", "null");
+            System.out.println("From maxspeed with parent rule: " + legalSpeed.getSpeedLimit(tags, options));
+
+            tags.put("maxspeed", "NL:trunk");
+            System.out.println("From maxspeed with parent rule: " + legalSpeed.getSpeedLimit(tags, options));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
