@@ -1,3 +1,10 @@
+# [1.1.0-rc.1](https://github.com/chargetrip/osm-legal-speed/compare/1.0.2...1.1.0-rc.1) (2022-12-16)
+
+
+### Features
+
+* Germany no speed limit support and fix ArrayIndexOutOfBoundsException ([2c9d507](https://github.com/chargetrip/osm-legal-speed/commit/2c9d507bfc5bda781794b61a631fabe0284ad9a3))
+
 ## [1.0.2](https://github.com/chargetrip/osm-legal-speed/compare/1.0.1...1.0.2) (2022-11-25)
 
 
