@@ -1,3 +1,10 @@
+# [1.1.0-rc.2](https://github.com/chargetrip/osm-legal-speed/compare/1.1.0-rc.1...1.1.0-rc.2) (2022-12-16)
+
+
+### Bug Fixes
+
+* Support for condition in maxspeed tag ([c8e2286](https://github.com/chargetrip/osm-legal-speed/commit/c8e228628763f51ab1e03af7cd1d31fb96cb041b))
+
 # [1.1.0-rc.1](https://github.com/chargetrip/osm-legal-speed/compare/1.0.2...1.1.0-rc.1) (2022-12-16)
 
 
