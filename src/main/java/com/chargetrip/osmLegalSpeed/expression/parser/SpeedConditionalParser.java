@@ -45,7 +45,7 @@ public class SpeedConditionalParser {
 
                 result.add(new SpeedConditional(speedValue.floatValue(), speedCondition));
             } catch (Exception e) {
-                System.err.println("Parsing condition: '" + condition + "'");
+                System.err.println("Parsing condition: '" + condition + "' of conditions: '" + cursor.value + "'");
                 System.err.println(e.getMessage());
             }
         }

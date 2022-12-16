@@ -40,7 +40,7 @@ public class NumberUtil {
 
         char last = value.charAt(value.length()-1);
         if (!Character.isLetter(last) && last != '"' && last != '\'') {
-            return Double.parseDouble(value);
+            return Double.parseDouble(value.trim());
         }
 
         Matcher feetInchResult = feetInchRegex.matcher(value);

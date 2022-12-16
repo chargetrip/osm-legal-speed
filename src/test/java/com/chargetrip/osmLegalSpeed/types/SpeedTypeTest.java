@@ -88,6 +88,23 @@ public class SpeedTypeTest {
     }
 
     @Test
+    @DisplayName("SpeedType build for condition in maxspeed and fallback")
+    void testBuildForConditionMaxSpeed() {
+        SpeedType speedType = new SpeedType();
+        speedType.name = "Name";
+        speedType.tags.put("maxspeed", "80");
+        speedType.tags.put("maxspeed:hgv", "30 @ (weight>7.5)");
+
+        speedType.build();
+
+        assertTrue(speedType.vehicleSpeedType.containsKey(VehicleType.Car));
+        assertTrue(speedType.vehicleSpeedType.containsKey(VehicleType.Hgv));
+        assertEquals(speedType.vehicleSpeedType.get(VehicleType.Car).speed, 80.0f);
+        assertEquals(speedType.vehicleSpeedType.get(VehicleType.Hgv).speed, 80.0f);
+        assertNotNull(speedType.vehicleSpeedType.get(VehicleType.Hgv).speedConditional);
+    }
+
+    @Test
     @DisplayName("SpeedType build for parent speed")
     void testBuildParentSpeed() {
         SpeedType speedType = new SpeedType();

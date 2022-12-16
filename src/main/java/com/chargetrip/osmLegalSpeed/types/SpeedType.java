@@ -39,7 +39,7 @@ public class SpeedType {
         if (object.has("name")) {
             speedType.name = object.getString("name");
         }
-        if(object.has("tags")) {
+        if (object.has("tags")) {
             speedType.tags = new HashMap<>();
             JSONObject tags = object.getJSONObject("tags");
             for (String key : tags.keySet()) {
@@ -72,10 +72,20 @@ public class SpeedType {
         Map<VehicleType, List<String>> vehicleListMap = Options.getVehicleSpeedTags();
 
         for (VehicleType vehicle : vehicleListMap.keySet()) {
+            VehicleSpeedType vst = new VehicleSpeedType();
+
             for (String tag : vehicleListMap.get(vehicle)) {
                 if (tags.containsKey(tag)) {
-                    VehicleSpeedType vst = new VehicleSpeedType();
-                    Double speed = NumberUtil.withOptionalUnitToDoubleOrNull(tags.get(tag));
+                    Double speed = null;
+                    String tagValue = tags.get(tag);
+                    if (tagValue.contains("@")) {
+                        SpeedConditionalParser speedConditionalParser = new SpeedConditionalParser(tagValue);
+
+                        vst.speedConditional = speedConditionalParser.parse();
+                    } else {
+                        speed = NumberUtil.withOptionalUnitToDoubleOrNull(tags.get(tag));
+                    }
+
                     if (speed != null) {
                         vst.speed = speed.floatValue();
                     }
@@ -101,26 +111,24 @@ public class SpeedType {
                         vst.speedConditional = speedConditionalParser.parse();
                     }
 
-                    vehicleSpeedType.put(vehicle, vst);
-
-                    break;
+                    if (vst.speed != null) {
+                        break;
+                    }
                 }
             }
+
+            vehicleSpeedType.put(vehicle, vst);
         }
     }
 
     /**
      * Determine the legal max speed limit for a specific vehicle type
      *
-     * @param vehicle The vehicle type
+     * @param vehicle    The vehicle type
      * @param optionTags Input options as map of tags
      * @return Null in case speed cannot be determined (vehicle type not available) or the speed value
      */
     public Float getSpeedForVehicle(VehicleType vehicle, Map<String, String> optionTags) {
-        if (!this.vehicleSpeedType.containsKey(vehicle)) {
-            return null;
-        }
-
         VehicleSpeedType speedType = this.vehicleSpeedType.get(vehicle);
 
         if (speedType.speedConditional != null) {
@@ -146,7 +154,7 @@ public class SpeedType {
      * Searching the speed type parent based on parent name
      *
      * @param countryConfigList The list of possible parents
-     * @param name The name of the parent to search for
+     * @param name              The name of the parent to search for
      * @return The parent speed type, if exists, otherwise null
      */
     protected SpeedType searchSpeedTypeParent(List<SpeedType> countryConfigList, String name) {
