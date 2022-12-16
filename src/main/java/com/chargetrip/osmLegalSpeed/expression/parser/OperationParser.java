@@ -66,6 +66,7 @@ public class OperationParser {
      * Parse simple operation
      *
      * @throws ParseException In case the operation cannot be parsed
+     * @return The tag operation
      */
     public TagOperation parse() throws ParseException {
         boolean negative = cursor.isNextAndAdvance(OperationType.NOT);

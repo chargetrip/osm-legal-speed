@@ -16,6 +16,7 @@ public abstract class RegexOrSet {
      * Checking if the string matches the set of rules
      *
      * @param string The string to check against the rules
+     * @return If it matches the rule
      */
     public abstract boolean matches(String string);
 
@@ -23,6 +24,7 @@ public abstract class RegexOrSet {
      * Extracting the type of rules we need for a specific input string
      *
      * @param string The specific rules string
+     * @return The regex or set of the string
      */
     public static RegexOrSet from(String string) {
         if (!anyRegexStuffExceptPipe.matcher(string).find()) {

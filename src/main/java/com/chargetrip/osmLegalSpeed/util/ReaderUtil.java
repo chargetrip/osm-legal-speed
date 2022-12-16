@@ -10,6 +10,7 @@ public class ReaderUtil {
      * Reading the content of am input stream
      *
      * @param inputStream The input stream
+     * @return The content, as string, of an input stream
      */
     public static String readInputStreamContent(InputStream inputStream) {
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);

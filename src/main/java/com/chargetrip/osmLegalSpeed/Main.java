@@ -58,10 +58,27 @@ public class Main {
             System.out.println("From maxspeed with parent rule: " + legalSpeed.getSpeedLimit(tags, options));
 
             tags.put("maxspeed", "null");
-            System.out.println("From maxspeed with parent rule: " + legalSpeed.getSpeedLimit(tags, options));
+            System.out.println("From null maxspeed: " + legalSpeed.getSpeedLimit(tags, options));
 
             tags.put("maxspeed", "NL:trunk");
             System.out.println("From maxspeed with parent rule: " + legalSpeed.getSpeedLimit(tags, options));
+
+            tags.put("maxspeed", "none");
+            options.latitude = 52.5170365;
+            options.longitude = 13.3888599;
+            System.out.println("From none maxspeed in DE: " + legalSpeed.getSpeedLimit(tags, options));
+
+            Map<String, String> germanyTags = new HashMap<>();
+            germanyTags.put("destination:ref", "B 173");
+            germanyTags.put("destination:lanes", "Dresden|Freiberg;Freital;Kesselsdorf");
+            germanyTags.put("bdouble", "yes");
+            germanyTags.put("oneway", "yes");
+            germanyTags.put("turn:lanes", "left|right");
+            germanyTags.put("lit", "no");
+            germanyTags.put("hazmat", "designated");
+            germanyTags.put("lanes", "2");
+            germanyTags.put("highway", "motorway_link");
+            System.out.println("From motorway_link in DE: " + legalSpeed.getSpeedLimit(germanyTags, options));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }

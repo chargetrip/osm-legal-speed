@@ -33,6 +33,7 @@ public abstract class NumberCompareOperation implements TagOperation {
      * Compare the current value with an external value
      *
      * @param value The external value
+     * @return Compare result
      */
     public abstract boolean compareTo(double value);
 

@@ -1,5 +1,7 @@
 package com.chargetrip.osmLegalSpeed.expression.parser;
 
+import com.chargetrip.osmLegalSpeed.expression.operation.TagOperation;
+import com.chargetrip.osmLegalSpeed.expression.operation.TrueOperation;
 import com.chargetrip.osmLegalSpeed.types.SpeedConditional;
 import com.chargetrip.osmLegalSpeed.util.NumberUtil;
 import com.chargetrip.osmLegalSpeed.util.StringCursor;
@@ -30,14 +32,20 @@ public class SpeedConditionalParser {
         List<String> conditions = Arrays.stream(cursor.value.split(";")).map(String::trim).collect(Collectors.toList());
         for (String condition : conditions) {
             try {
-                String[] data =  condition.split("@");
+                String[] data = condition.split("@");
                 Double speedValue = NumberUtil.withOptionalUnitToDoubleOrNull(data[0].trim());
                 if (speedValue == null) {
                     continue;
                 }
 
-                result.add(new SpeedConditional(speedValue.floatValue(), new ExpressionParser(data[1].trim().toLowerCase()).parse()));
+                // In case we do not have a condition to parse, we assume a true
+                TagOperation speedCondition = data.length > 1
+                        ? new ExpressionParser(data[1].trim().toLowerCase()).parse()
+                        : new TrueOperation();
+
+                result.add(new SpeedConditional(speedValue.floatValue(), speedCondition));
             } catch (Exception e) {
+                System.err.println("Parsing condition: '" + condition + "'");
                 System.err.println(e.getMessage());
             }
         }

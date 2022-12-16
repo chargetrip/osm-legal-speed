@@ -118,6 +118,8 @@ public class Options {
 
     /**
      * Get a map of tags for searching the max speed from a list of max speed tags.
+     *
+     * @return The map of tags
      */
     public Map<String, String> getTags() {
         Map<String, String> result = new HashMap<>();
@@ -180,22 +182,24 @@ public class Options {
 
     /**
      * Getting a list of tags for each vehicle to get the max speed
+     *
+     * @return The map of vehicle maxspeed tags
      */
     public static Map<VehicleType, List<String>> getVehicleSpeedTags() {
         Map<VehicleType, List<String>> result = new HashMap<>();
 
-        result.put(VehicleType.Car, List.of("maxspeed"));
-        result.put(VehicleType.Bus, List.of("maxspeed:bus", "maxspeed"));
-        result.put(VehicleType.MiniBus, List.of("maxspeed:minibus", "maxspeed"));
-        result.put(VehicleType.SchoolBus, List.of("maxspeed:school_bus", "maxspeed"));
-        result.put(VehicleType.TruckBus, List.of("maxspeed:truck_bus", "maxspeed"));
-        result.put(VehicleType.Coach, List.of("maxspeed:coach", "maxspeed"));
-        result.put(VehicleType.Goods, List.of("maxspeed:goods", "maxspeed"));
-        result.put(VehicleType.Hazmat, List.of("maxspeed:hazmat", "maxspeed"));
-        result.put(VehicleType.Hgv, List.of("maxspeed:hgv", "maxspeed"));
-        result.put(VehicleType.Motorcycle, List.of("maxspeed:motorcycle", "motorcycle", "maxspeed:motorcycle:advisory", "maxspeed"));
-        result.put(VehicleType.Tricycle, List.of("maxspeed:tricycle", "tricycle", "maxspeed"));
-        result.put(VehicleType.MotorHome, List.of("maxspeed:motorhome", "maxspeed:motorhome:advisory", "maxspeed"));
+        result.put(VehicleType.Car, List.of("maxspeed", "maxspeed:advisory"));
+        result.put(VehicleType.Bus, List.of("maxspeed:bus", "maxspeed", "maxspeed:advisory"));
+        result.put(VehicleType.MiniBus, List.of("maxspeed:minibus", "maxspeed", "maxspeed:advisory"));
+        result.put(VehicleType.SchoolBus, List.of("maxspeed:school_bus", "maxspeed", "maxspeed:advisory"));
+        result.put(VehicleType.TruckBus, List.of("maxspeed:truck_bus", "maxspeed", "maxspeed:advisory"));
+        result.put(VehicleType.Coach, List.of("maxspeed:coach", "maxspeed", "maxspeed:advisory"));
+        result.put(VehicleType.Goods, List.of("maxspeed:goods", "maxspeed", "maxspeed:advisory"));
+        result.put(VehicleType.Hazmat, List.of("maxspeed:hazmat", "maxspeed", "maxspeed:advisory"));
+        result.put(VehicleType.Hgv, List.of("maxspeed:hgv", "maxspeed", "maxspeed:advisory"));
+        result.put(VehicleType.Motorcycle, List.of("maxspeed:motorcycle", "motorcycle", "maxspeed:motorcycle:advisory", "maxspeed", "maxspeed:advisory"));
+        result.put(VehicleType.Tricycle, List.of("maxspeed:tricycle", "tricycle", "maxspeed", "maxspeed:advisory"));
+        result.put(VehicleType.MotorHome, List.of("maxspeed:motorhome", "maxspeed:motorhome:advisory", "maxspeed", "maxspeed:advisory"));
 
         return result;
     }

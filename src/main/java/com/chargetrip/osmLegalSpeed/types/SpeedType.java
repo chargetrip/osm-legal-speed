@@ -84,9 +84,11 @@ public class SpeedType {
                         if (tags.get(tag).equalsIgnoreCase("walk")) {
                             // Default walk speed is 5 km/h
                             vst.speed = 5.0f;
+                        } else if (tags.get(tag).equalsIgnoreCase("none")) {
+                            // There is no max speed limit (probably Germany), so we set it to advisory as 130 km/h
+                            vst.speed = 130.0f;
                         } else {
                             Matcher matcher = OperationType.countryDefaultRule.matcher(tags.get(tag));
-//                            System.out.println("Find: "  + matcher.find() + "; " + tags.get(tag));
                             if (matcher.find()) {
                                 vst.parent = this.searchSpeedTypeParent(countryConfigList, matcher.group(2));
                             }

@@ -128,6 +128,7 @@ public class ExpressionReader {
      * Read the config from a JSON object
      *
      * @param object The object from which to read
+     * @return The expression reader
      */
     public static ExpressionReader fromJSON(JSONObject object) {
         ExpressionReader config = new ExpressionReader();

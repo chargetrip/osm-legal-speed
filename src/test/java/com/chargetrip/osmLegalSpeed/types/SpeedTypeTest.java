@@ -75,6 +75,19 @@ public class SpeedTypeTest {
     }
 
     @Test
+    @DisplayName("SpeedType build for none as speed")
+    void testBuildForNone() {
+        SpeedType speedType = new SpeedType();
+        speedType.name = "Name";
+        speedType.tags.put("maxspeed", "none");
+
+        speedType.build();
+
+        assertTrue(speedType.vehicleSpeedType.containsKey(VehicleType.Car));
+        assertEquals(speedType.vehicleSpeedType.get(VehicleType.Car).speed, 130.0f);
+    }
+
+    @Test
     @DisplayName("SpeedType build for parent speed")
     void testBuildParentSpeed() {
         SpeedType speedType = new SpeedType();
