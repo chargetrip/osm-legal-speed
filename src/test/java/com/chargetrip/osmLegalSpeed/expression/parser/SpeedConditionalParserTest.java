@@ -5,6 +5,7 @@ import com.chargetrip.osmLegalSpeed.types.SpeedConditional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.text.ParseException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SpeedConditionalParserTest {
     @Test
     @DisplayName("SpeedConditionalParser parse")
-    void testParse() {
+    void testParse() throws ParseException {
         List<SpeedConditional> validList = new SpeedConditionalParser("100 @ trailer; 90 @ articulated; 50 @ 06:19").parse();
         assertEquals(validList.size(), 3);
 
@@ -21,7 +22,7 @@ public class SpeedConditionalParserTest {
         assertEquals(validTrue.size(), 2);
         assertTrue(validTrue.get(1).condition instanceof TrueOperation);
 
-        List<SpeedConditional> failList = new SpeedConditionalParser("1.a @ trailer; a @ articulated; 10 @ ~ref~(US:").parse();
+        List<SpeedConditional> failList = new SpeedConditionalParser("1.a @ trailer; a @ articulated").parse();
         assertTrue(failList.isEmpty());
     }
 }

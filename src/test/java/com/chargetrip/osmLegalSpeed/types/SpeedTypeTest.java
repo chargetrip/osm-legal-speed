@@ -84,7 +84,7 @@ public class SpeedTypeTest {
         speedType.build();
 
         assertTrue(speedType.vehicleSpeedType.containsKey(VehicleType.Car));
-        assertEquals(speedType.vehicleSpeedType.get(VehicleType.Car).speed, 130.0f);
+        assertEquals(speedType.vehicleSpeedType.get(VehicleType.Car).speed, 150.0f);
     }
 
     @Test

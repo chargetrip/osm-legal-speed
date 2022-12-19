@@ -81,9 +81,17 @@ public class SpeedType {
                     if (tagValue.contains("@")) {
                         SpeedConditionalParser speedConditionalParser = new SpeedConditionalParser(tagValue);
 
-                        vst.speedConditional = speedConditionalParser.parse();
+                        try {
+                            vst.speedConditional = speedConditionalParser.parse();
+                        } catch (Exception e) {
+                            System.err.println("Error parsing conditional speed value from '" + tag + "': " + e.getMessage());
+                        }
                     } else {
-                        speed = NumberUtil.withOptionalUnitToDoubleOrNull(tags.get(tag));
+                        try {
+                            speed = NumberUtil.withOptionalUnitToDoubleOrNull(tags.get(tag));
+                        } catch (Exception e) {
+                            System.err.println("Error parsing speed value from '" + tag + "': " + e.getMessage());
+                        }
                     }
 
                     if (speed != null) {
@@ -95,8 +103,8 @@ public class SpeedType {
                             // Default walk speed is 5 km/h
                             vst.speed = 5.0f;
                         } else if (tags.get(tag).equalsIgnoreCase("none")) {
-                            // There is no max speed limit (probably Germany), so we set it to advisory as 130 km/h
-                            vst.speed = 130.0f;
+                            // There is no max speed limit (probably Germany), so we set it to advisory as 150 km/h
+                            vst.speed = 150.0f;
                         } else {
                             Matcher matcher = OperationType.countryDefaultRule.matcher(tags.get(tag));
                             if (matcher.find()) {
@@ -108,7 +116,11 @@ public class SpeedType {
                     if (tags.containsKey(tag + ":conditional")) {
                         SpeedConditionalParser speedConditionalParser = new SpeedConditionalParser(tags.get(tag + ":conditional"));
 
-                        vst.speedConditional = speedConditionalParser.parse();
+                        try {
+                            vst.speedConditional = speedConditionalParser.parse();
+                        } catch (Exception e) {
+                            System.err.println("Error parsing conditional speed value from '" + tag + "': " + e.getMessage());
+                        }
                     }
 
                     if (vst.speed != null) {
