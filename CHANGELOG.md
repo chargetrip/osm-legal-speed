@@ -1,3 +1,10 @@
+# [1.1.0-rc.4](https://github.com/chargetrip/osm-legal-speed/compare/1.1.0-rc.3...1.1.0-rc.4) (2022-12-19)
+
+
+### Bug Fixes
+
+* BE borders and clean up OSM tags ([046970e](https://github.com/chargetrip/osm-legal-speed/commit/046970eb0ddaf0c52ebb70aa18af55dfdc34c44f))
+
 # [1.1.0-rc.3](https://github.com/chargetrip/osm-legal-speed/compare/1.1.0-rc.2...1.1.0-rc.3) (2022-12-19)
 
 
