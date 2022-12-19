@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/chargetrip/osm-legal-speed/compare/1.0.2...1.1.0) (2022-12-19)
+
+
+### Bug Fixes
+
+* BE borders and clean up OSM tags ([046970e](https://github.com/chargetrip/osm-legal-speed/commit/046970eb0ddaf0c52ebb70aa18af55dfdc34c44f))
+* Broken parse expressions for date and time operation ([7ce1ca8](https://github.com/chargetrip/osm-legal-speed/commit/7ce1ca89a1d2e773af27784e92454d89c5d78181))
+* Support for condition in maxspeed tag ([c8e2286](https://github.com/chargetrip/osm-legal-speed/commit/c8e228628763f51ab1e03af7cd1d31fb96cb041b))
+
+
+### Features
+
+* Germany no speed limit support and fix ArrayIndexOutOfBoundsException ([2c9d507](https://github.com/chargetrip/osm-legal-speed/commit/2c9d507bfc5bda781794b61a631fabe0284ad9a3))
+
 # [1.1.0-rc.4](https://github.com/chargetrip/osm-legal-speed/compare/1.1.0-rc.3...1.1.0-rc.4) (2022-12-19)
 
 
