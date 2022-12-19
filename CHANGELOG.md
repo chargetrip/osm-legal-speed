@@ -1,3 +1,10 @@
+# [1.1.0-rc.3](https://github.com/chargetrip/osm-legal-speed/compare/1.1.0-rc.2...1.1.0-rc.3) (2022-12-19)
+
+
+### Bug Fixes
+
+* Broken parse expressions for date and time operation ([7ce1ca8](https://github.com/chargetrip/osm-legal-speed/commit/7ce1ca89a1d2e773af27784e92454d89c5d78181))
+
 # [1.1.0-rc.2](https://github.com/chargetrip/osm-legal-speed/compare/1.1.0-rc.1...1.1.0-rc.2) (2022-12-16)
 
 
