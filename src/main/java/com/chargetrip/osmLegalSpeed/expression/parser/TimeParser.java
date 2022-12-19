@@ -130,12 +130,12 @@ public class TimeParser {
         Matcher timeMatcher = OperationType.dateTimeTime.matcher(cursor.value.toLowerCase());
         if (timeMatcher.find()) {
             startTime = LocalDateTime.now() //
-                    .withHour(Integer.parseInt(timeMatcher.group(1))) //
-                    .withMinute(Integer.parseInt(timeMatcher.group(2))) //
+                    .withHour(this.getValidHour(Integer.parseInt(timeMatcher.group(1)))) //
+                    .withMinute(this.getValidHour(Integer.parseInt(timeMatcher.group(2)))) //
             ;
             endTime = LocalDateTime.now() //
-                    .withHour(Integer.parseInt(timeMatcher.group(3))) //
-                    .withMinute(Integer.parseInt(timeMatcher.group(4))) //
+                    .withHour(this.getValidHour(Integer.parseInt(timeMatcher.group(3)))) //
+                    .withMinute(this.getValidHour(Integer.parseInt(timeMatcher.group(4)))) //
             ;
 
             if (endTime.isBefore(startTime)) {
@@ -152,5 +152,21 @@ public class TimeParser {
                 startTime,
                 endTime
         );
+    }
+
+    /**
+     * Determine the correct hour value between 0 and 23 by adding or subtracting 24 from exterior interval
+     *
+     * @param hour The original hour value
+     * @return The correct hour value
+     */
+    protected int getValidHour(int hour) {
+        if (hour > 23) {
+            while (hour > 23) {
+                hour -= 24;
+            }
+        }
+
+        return hour;
     }
 }

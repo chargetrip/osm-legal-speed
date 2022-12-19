@@ -140,7 +140,7 @@ public class ExpressionParser extends AbstractParser<TagOperation> {
         try {
             return new OperationParser(trimmedValue).parse();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Error while parsing operation '" + trimmedValue + "': " + e.getMessage());
         }
 
         return null;

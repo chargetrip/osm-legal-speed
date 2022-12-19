@@ -88,6 +88,47 @@ public class SpeedTypeTest {
     }
 
     @Test
+    @DisplayName("SpeedType build for invalid value on maxspeed")
+    void testBuildForInvalidValueOnMaxSpeed() {
+        SpeedType speedType = new SpeedType();
+        speedType.name = "Name";
+        speedType.tags.put("maxspeed", "90 (Weekdays)");
+
+        speedType.build();
+
+        assertTrue(speedType.vehicleSpeedType.containsKey(VehicleType.Car));
+        assertNull(speedType.vehicleSpeedType.get(VehicleType.Car).speed);
+    }
+
+    @Test
+    @DisplayName("SpeedType build for invalid condition on maxspeed")
+    void testBuildForInvalidConditionOnMaxSpeed() {
+        SpeedType speedType = new SpeedType();
+        speedType.name = "Name";
+        speedType.tags.put("maxspeed", "90 @ (Weekdays");
+
+        speedType.build();
+
+        assertTrue(speedType.vehicleSpeedType.containsKey(VehicleType.Car));
+        assertNull(speedType.vehicleSpeedType.get(VehicleType.Car).speed);
+    }
+
+
+    @Test
+    @DisplayName("SpeedType build for invalid maxspeed:conditional")
+    void testBuildForInvalidMaxSpeedConditional() {
+        SpeedType speedType = new SpeedType();
+        speedType.name = "Name";
+        speedType.tags.put("maxspeed", "100");
+        speedType.tags.put("maxspeed:conditional", "90 @ (Weekdays");
+
+        speedType.build();
+
+        assertTrue(speedType.vehicleSpeedType.containsKey(VehicleType.Car));
+        assertEquals(speedType.vehicleSpeedType.get(VehicleType.Car).speed, 100f);
+    }
+
+    @Test
     @DisplayName("SpeedType build for condition in maxspeed and fallback")
     void testBuildForConditionMaxSpeed() {
         SpeedType speedType = new SpeedType();

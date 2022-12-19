@@ -82,5 +82,12 @@ public class TimeParserTest {
         } catch (ParseException e) {
             fail();
         }
+        try {
+            TimeOperation operation = new TimeParser("22:00-30:00").parse();
+
+            assertEquals(operation.toString(), "(22:0-6:0)");
+        } catch (ParseException e) {
+            fail();
+        }
     }
 }

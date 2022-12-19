@@ -38,7 +38,7 @@ public class NumberUtil {
             return null;
         }
 
-        char last = value.charAt(value.length()-1);
+        char last = value.charAt(value.length() - 1);
         if (!Character.isLetter(last) && last != '"' && last != '\'') {
             return Double.parseDouble(value.trim());
         }

@@ -21,7 +21,7 @@ public class SpeedConditionalParser extends AbstractParser<String> {
      * @param value The string expression to parse
      */
     public SpeedConditionalParser(String value) {
-        super(value);
+        super(value.replaceAll(" ", " "));
     }
 
     /**
@@ -44,11 +44,7 @@ public class SpeedConditionalParser extends AbstractParser<String> {
                 // In case we do not have a condition to parse, we assume a true
                 TagOperation speedCondition = new TrueOperation();
                 if (data.length > 1) {
-                    try {
-                        speedCondition = this.parseExpression(data[1].trim().toLowerCase());
-                    } catch (ParseException e) {
-                        System.out.println("Error while parsing speed condition '" + data[1].trim().toLowerCase() + "': " + e.getMessage());
-                    }
+                    speedCondition = this.parseExpression(data[1].trim().toLowerCase());
                 }
 
                 result.add(new SpeedConditional(speedValue.floatValue(), speedCondition));
@@ -90,14 +86,8 @@ public class SpeedConditionalParser extends AbstractParser<String> {
             // We have multiple expressions
             OrOperation result = new OrOperation();
             for (String v1 : expression.split(";")) {
-                try {
-                    result.addChild(new ExpressionParser(v1.trim()).parse());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                result.addChild(new ExpressionParser(v1.trim()).parse());
             }
-
-            System.out.println(result);
 
             return result;
         }
