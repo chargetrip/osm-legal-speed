@@ -1,3 +1,10 @@
+# [1.2.0-rc.1](https://github.com/chargetrip/osm-legal-speed/compare/1.1.0...1.2.0-rc.1) (2022-12-20)
+
+
+### Features
+
+* Use slf4j for logging instead of system ([48de022](https://github.com/chargetrip/osm-legal-speed/commit/48de0223ea6ffbafdc17479a83ceed8f19c1d414))
+
 # [1.1.0](https://github.com/chargetrip/osm-legal-speed/compare/1.0.2...1.1.0) (2022-12-19)
 
 
