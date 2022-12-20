@@ -5,6 +5,8 @@ import com.chargetrip.osmLegalSpeed.expression.operation.AndOperation;
 import com.chargetrip.osmLegalSpeed.expression.operation.OrOperation;
 import com.chargetrip.osmLegalSpeed.expression.operation.TagOperation;
 import com.chargetrip.osmLegalSpeed.expression.operation.TreeOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -23,6 +25,11 @@ public class ExpressionParser extends AbstractParser<TagOperation> {
      * A list with all the time operations
      */
     protected List<TagOperation> allTimeOperations;
+
+    /**
+     * The logger
+     */
+    protected Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * Constructor of the parser
@@ -140,7 +147,7 @@ public class ExpressionParser extends AbstractParser<TagOperation> {
         try {
             return new OperationParser(trimmedValue).parse();
         } catch (Exception e) {
-            System.err.println("Error while parsing operation '" + trimmedValue + "': " + e.getMessage());
+            logger.error("Error while parsing operation '" + trimmedValue + "': " + e.getMessage());
         }
 
         return null;

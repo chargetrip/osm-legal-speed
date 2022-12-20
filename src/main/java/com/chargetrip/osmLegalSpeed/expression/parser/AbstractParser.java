@@ -108,6 +108,8 @@ public abstract class AbstractParser<T> {
      * Parse the content of a parentheses
      *
      * @param parentheses The content of the parentheses
+     * @return Should return the result for parentheses
+     * @throws ParseException in case the parsing fails
      */
     protected abstract T parseParentheses(String parentheses) throws ParseException;
 }

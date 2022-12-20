@@ -5,6 +5,8 @@ import com.chargetrip.osmLegalSpeed.expression.operation.TagOperation;
 import com.chargetrip.osmLegalSpeed.expression.operation.TrueOperation;
 import com.chargetrip.osmLegalSpeed.types.SpeedConditional;
 import com.chargetrip.osmLegalSpeed.util.NumberUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -15,6 +17,11 @@ import java.util.List;
  * Parser class for speed conditions expressions
  */
 public class SpeedConditionalParser extends AbstractParser<String> {
+    /**
+     * The logger
+     */
+    protected Logger logger = LoggerFactory.getLogger(getClass());
+
     /**
      * Constructor of the parser
      *
@@ -49,8 +56,8 @@ public class SpeedConditionalParser extends AbstractParser<String> {
 
                 result.add(new SpeedConditional(speedValue.floatValue(), speedCondition));
             } catch (Exception e) {
-                System.err.println("Parsing condition: '" + condition + "' of conditions: '" + cursor.value + "'");
-                System.err.println(e.getMessage());
+                logger.error("Parsing condition: '" + condition + "' of conditions: '" + cursor.value + "'");
+                logger.error(e.getMessage());
             }
         }
 
@@ -64,6 +71,7 @@ public class SpeedConditionalParser extends AbstractParser<String> {
      * Split the conditions into a list of conditions divided by ; or ,
      *
      * @return A list of conditions
+     * @throws ParseException in case the parsing fails
      */
     protected List<String> splitConditions() throws ParseException {
         // First we should extract all Quotes in order to keep the parentheses from them

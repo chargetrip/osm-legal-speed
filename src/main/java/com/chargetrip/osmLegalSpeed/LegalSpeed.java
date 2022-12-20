@@ -5,6 +5,8 @@ import com.chargetrip.osmLegalSpeed.expression.ExpressionReader;
 import com.chargetrip.osmLegalSpeed.types.*;
 import com.mapbox.geojson.*;
 import com.mapbox.turf.TurfJoins;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -19,6 +21,11 @@ import java.util.stream.Collectors;
  * the set of rules, and we cannot determine the legal max speed.
  */
 public class LegalSpeed {
+    /**
+     * The logger
+     */
+    protected Logger logger = LoggerFactory.getLogger(getClass());
+
     /**
      * Regex for detecting the OSM max speed tags
      */
@@ -69,6 +76,12 @@ public class LegalSpeed {
         SearchResult searchResult = searchSpeedLimits(tags, countryWithRegion, options.fuzzySearch);
         if (searchResult == null) {
             // No result were found
+
+            logger.debug("Cannot determine max legal speed for country '" + countryWithRegion + "'");
+            logger.debug("OSM Tags: " + tags);
+            logger.debug("Vehicle: " + options.vehicle);
+            logger.debug("Options: " + options.getTags());
+
             return null;
         }
 

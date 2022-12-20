@@ -2,6 +2,9 @@ package com.chargetrip.osmLegalSpeed;
 
 import com.chargetrip.osmLegalSpeed.types.Options;
 import com.chargetrip.osmLegalSpeed.types.VehicleType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.simple.SimpleLogger;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -19,6 +22,10 @@ public class Main {
      * @param args Input arguments
      */
     public static void main(String[] args) {
+        System.setProperty(SimpleLogger.DEFAULT_LOG_LEVEL_KEY, "TRACE");
+
+        Logger logger = LoggerFactory.getLogger(Main.class);
+
         Map<String, String> tags = new HashMap<>();
         tags.put("type", "route");
         tags.put("route", "road");
@@ -34,39 +41,39 @@ public class Main {
 
             // How to get a country with region code
             String countryWithRegion = legalSpeed.getCountryWithRegion(options.latitude, options.longitude);
-            System.out.println("Country with region: " + countryWithRegion);
+            logger.debug("Country with region: " + countryWithRegion);
 
             // How to search for max speed tags
             LegalSpeed.SearchResult searchResult = legalSpeed.searchSpeedLimits(tags, countryWithRegion, true);
-            System.out.println("SearchResult: ");
-            System.out.println("- certitude: " + searchResult.certitude);
-            System.out.println("- tags: " + searchResult.speedType);
+            logger.debug("SearchResult: ");
+            logger.debug("- certitude: " + searchResult.certitude);
+            logger.debug("- tags: " + searchResult.speedType);
 
             // How to get the legal speed for all vehicles
-            System.out.println("Legal speeds:");
+            logger.debug("Legal speeds:");
             for (VehicleType vehicle : VehicleType.values()) {
                 options.vehicle = vehicle;
-                System.out.println("- " + vehicle + ": " + legalSpeed.getSpeedLimit(tags, options));
+                logger.debug("- " + vehicle + ": " + legalSpeed.getSpeedLimit(tags, options));
             }
 
             // How to get speed from maxspeed tag
             options.vehicle = VehicleType.Car;
             tags.put("maxspeed", "50;30");
-            System.out.println("From maxspeed with multiple values: " + legalSpeed.getSpeedLimit(tags, options));
+            logger.debug("From maxspeed with multiple values: " + legalSpeed.getSpeedLimit(tags, options));
 
             tags.put("maxspeed", "NL:urban");
-            System.out.println("From maxspeed with parent rule: " + legalSpeed.getSpeedLimit(tags, options));
+            logger.debug("From maxspeed with parent rule: " + legalSpeed.getSpeedLimit(tags, options));
 
             tags.put("maxspeed", "null");
-            System.out.println("From null maxspeed: " + legalSpeed.getSpeedLimit(tags, options));
+            logger.debug("From null maxspeed: " + legalSpeed.getSpeedLimit(tags, options));
 
             tags.put("maxspeed", "NL:trunk");
-            System.out.println("From maxspeed with parent rule: " + legalSpeed.getSpeedLimit(tags, options));
+            logger.debug("From maxspeed with parent rule: " + legalSpeed.getSpeedLimit(tags, options));
 
             tags.put("maxspeed", "none");
             options.latitude = 52.5170365;
             options.longitude = 13.3888599;
-            System.out.println("From none maxspeed in DE: " + legalSpeed.getSpeedLimit(tags, options));
+            logger.debug("From none maxspeed in DE: " + legalSpeed.getSpeedLimit(tags, options));
 
             Map<String, String> germanyTags = new HashMap<>();
             germanyTags.put("destination:ref", "B 173");
@@ -78,7 +85,7 @@ public class Main {
             germanyTags.put("hazmat", "designated");
             germanyTags.put("lanes", "2");
             germanyTags.put("highway", "motorway_link");
-            System.out.println("From motorway_link in DE: " + legalSpeed.getSpeedLimit(germanyTags, options));
+            logger.debug("From motorway_link in DE: " + legalSpeed.getSpeedLimit(germanyTags, options));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }

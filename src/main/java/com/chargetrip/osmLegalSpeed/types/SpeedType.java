@@ -4,6 +4,8 @@ import com.chargetrip.osmLegalSpeed.expression.OperationType;
 import com.chargetrip.osmLegalSpeed.expression.parser.SpeedConditionalParser;
 import com.chargetrip.osmLegalSpeed.util.NumberUtil;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +14,11 @@ import java.util.Map;
 import java.util.regex.Matcher;
 
 public class SpeedType {
+    /**
+     * The logger
+     */
+    protected Logger logger = LoggerFactory.getLogger(getClass());
+
     /**
      * Name of the speed type rule which should be found in road types
      */
@@ -84,13 +91,13 @@ public class SpeedType {
                         try {
                             vst.speedConditional = speedConditionalParser.parse();
                         } catch (Exception e) {
-                            System.err.println("Error parsing conditional speed value from '" + tag + "': " + e.getMessage());
+                            logger.error("Error parsing conditional speed value from '" + tag + "': " + e.getMessage());
                         }
                     } else {
                         try {
                             speed = NumberUtil.withOptionalUnitToDoubleOrNull(tags.get(tag));
                         } catch (Exception e) {
-                            System.err.println("Error parsing speed value from '" + tag + "': " + e.getMessage());
+                            logger.error("Error parsing speed value from '" + tag + "': " + e.getMessage());
                         }
                     }
 
@@ -119,7 +126,7 @@ public class SpeedType {
                         try {
                             vst.speedConditional = speedConditionalParser.parse();
                         } catch (Exception e) {
-                            System.err.println("Error parsing conditional speed value from '" + tag + "': " + e.getMessage());
+                            logger.error("Error parsing conditional speed value from '" + tag + "': " + e.getMessage());
                         }
                     }
 
