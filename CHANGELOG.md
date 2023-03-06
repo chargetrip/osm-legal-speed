@@ -1,3 +1,10 @@
+## [1.2.1-rc.1](https://github.com/chargetrip/osm-legal-speed/compare/1.2.0...1.2.1-rc.1) (2023-03-06)
+
+
+### Bug Fixes
+
+* Speed profile for GB ([94c5954](https://github.com/chargetrip/osm-legal-speed/commit/94c5954ea6b9845c6918f6759cf7247aca9ad9ef))
+
 # [1.2.0](https://github.com/chargetrip/osm-legal-speed/compare/1.1.0...1.2.0) (2022-12-20)
 
 
