@@ -86,6 +86,16 @@ public class Main {
             germanyTags.put("lanes", "2");
             germanyTags.put("highway", "motorway_link");
             logger.debug("From motorway_link in DE: " + legalSpeed.getSpeedLimit(germanyTags, options));
+
+            Map<String, String> gbTags = new HashMap<>();
+            gbTags.put("source:name", "OS_OpenData_Locator");
+            gbTags.put("name", "Springfield Avenue");
+            gbTags.put("highway", "residential");
+            gbTags.put("oneway", "yes");
+            options.latitude = 52.0486164;
+            options.longitude = -2.7239301;
+
+            logger.debug("From residential in GB: " + legalSpeed.getSpeedLimit(gbTags, options));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
